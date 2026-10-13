@@ -1,0 +1,1242 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Iceland Trip Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: header with countdown, a three-tab switcher (Calendar, Itinerary, Budget), one full-width panel per tab. Everything is editable and saved in this browser. */
+:root {
+  --bg: #eef2f3;
+  --surface: #ffffff;
+  --surface-2: #e2eaec;
+  --fg: #12232b;
+  --muted: #55696f;
+  --line: #cbd8db;
+  --accent: #1f7f93;
+  --accent-fg: #ffffff;
+  --lava: #b9482a;
+  --fly: #5a6fb0;
+  --lagoon: #1f9fb3;
+  --tour: #2f8a5b;
+  --flex: #b9822a;
+  --night: #dfe7ea;
+  --day: #f6d98a;
+  --bg-flight: #f7e5e0; --bd-flight: #d8806b;
+  --bg-food: #f8edd8; --bd-food: #d9a74e;
+  --bg-act: #e1ede6; --bd-act: #6fa88a;
+  --bg-move: #e4e7ef; --bd-move: #3f4a73;
+  --bg-lagoon: #dbeef2; --bd-lagoon: #1f9fb3;
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif;
+  --font-body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d171c; --surface: #15232a; --surface-2: #1d2f38; --fg: #e6eef0; --muted: #8fa5ac;
+    --line: #2a3f49; --accent: #5cc0d3; --accent-fg: #07181d; --lava: #f08a68;
+    --fly: #8fa2e6; --lagoon: #52c4d6; --tour: #5fcf93; --flex: #e2b25c;
+    --night: #1a2a32; --day: #8a7a3c;
+    --bg-flight: #3a2523; --bd-flight: #e0907c;
+    --bg-food: #3a3120; --bd-food: #e2b25c;
+    --bg-act: #1f3329; --bd-act: #6fc29a;
+    --bg-move: #232a3d; --bd-move: #8fa2e6;
+    --bg-lagoon: #173038; --bd-lagoon: #52c4d6;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d171c; --surface: #15232a; --surface-2: #1d2f38; --fg: #e6eef0; --muted: #8fa5ac;
+  --line: #2a3f49; --accent: #5cc0d3; --accent-fg: #07181d; --lava: #f08a68;
+  --fly: #8fa2e6; --lagoon: #52c4d6; --tour: #5fcf93; --flex: #e2b25c;
+  --night: #1a2a32; --day: #8a7a3c;
+  --bg-flight: #3a2523; --bd-flight: #e0907c;
+  --bg-food: #3a3120; --bd-food: #e2b25c;
+  --bg-act: #1f3329; --bd-act: #6fc29a;
+  --bg-move: #232a3d; --bd-move: #8fa2e6;
+  --bg-lagoon: #173038; --bd-lagoon: #52c4d6;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 15px; line-height: 1.5; padding-inline: 16px; padding-block: 24px 48px; }
+.wrap { max-width: 1120px; margin-inline: auto; display: flex; flex-direction: column; gap: 20px; }
+h1, h2, h3 { font-family: var(--font-display); margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+button, input, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 600; }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+
+header { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; justify-content: space-between; }
+header h1 { font-size: clamp(30px, 6vw, 52px); line-height: 1.02; font-weight: 700; }
+header .route { color: var(--accent); font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.06em; }
+.count { text-align: right; }
+.count b { font-family: var(--font-display); font-size: clamp(34px, 6vw, 52px); line-height: 1; color: var(--lava); font-weight: 700; display: block; }
+
+.tabs { display: flex; gap: 4px; background: var(--surface-2); padding: 4px; border-radius: 10px; align-self: flex-start; max-width: 100%; }
+.tab { border: 0; background: transparent; padding: 8px 20px; border-radius: 7px; font-weight: 600; font-size: 14px; color: var(--muted); }
+.tab[aria-selected="true"] { background: var(--surface); color: var(--fg); box-shadow: 0 1px 2px rgba(0,0,0,0.12); }
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 12px; color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; border-left: 3px solid var(--b); background: var(--g); }
+.legend i.str { background: repeating-linear-gradient(135deg, var(--bg-act) 0 3px, transparent 3px 6px); border-left-style: dashed; }
+
+.btn { background: transparent; border: 1px solid var(--line); border-radius: 6px; padding: 6px 12px; font-size: 13px; font-weight: 500; }
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn.primary { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
+.btn.primary:hover { color: var(--accent-fg); filter: brightness(1.08); }
+.btn.danger:hover, .btn.danger.armed { border-color: var(--lava); color: var(--lava); }
+.btn.sm { padding: 3px 9px; font-size: 12px; }
+
+/* week time grid */
+.cal-wrap { display: flex; flex-direction: column; gap: 12px; }
+.calbox { overflow: auto; max-height: 74vh; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.tg { display: grid; grid-template-columns: 52px repeat(7, minmax(120px, 1fr)); min-width: 900px; position: relative; }
+.th { position: sticky; top: 0; z-index: 5; background: var(--surface); border-bottom: 2px solid var(--line); padding: 10px 6px; text-align: center; border-left: 1px solid var(--line); }
+.th.corner { border-left: 0; }
+button.th { border-top: 0; border-right: 0; }
+.th .dw { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 600; }
+.th .dn { display: block; font-family: var(--font-display); font-size: 22px; font-weight: 500; line-height: 1.2; }
+.th.tour { background: color-mix(in srgb, var(--tour) 14%, var(--surface)); border-bottom-color: var(--tour); }
+.th .tt { display: block; font-size: 10.5px; font-weight: 600; color: var(--tour); letter-spacing: 0.04em; text-transform: uppercase; }
+.th:hover .dn { color: var(--accent); }
+.tcol { position: relative; }
+.tcol .hl { position: absolute; right: 6px; transform: translateY(-50%); font-family: var(--font-mono); font-size: 11px; color: var(--muted); background: var(--surface); padding: 0 2px; }
+.dcol { position: relative; border-left: 1px solid var(--line); }
+.evb { position: absolute; border: 0; border-left: 4px solid var(--bd); background: var(--bg-c); border-radius: 4px; padding: 4px 7px; text-align: left; overflow: hidden; display: flex; flex-direction: column; gap: 0; line-height: 1.25; }
+.evb:hover { filter: brightness(0.97); }
+.evb[aria-pressed="true"] { outline: 2px solid var(--bd); outline-offset: 1px; }
+.evb .et { font-weight: 600; font-size: 12.5px; overflow-wrap: anywhere; }
+.evb .em { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.evb .es { font-size: 11.5px; color: var(--muted); overflow-wrap: anywhere; }
+.evb.tent { border-left-style: dashed; background-image: repeating-linear-gradient(135deg, color-mix(in srgb, var(--bd) 22%, transparent) 0 5px, transparent 5px 10px); }
+.c-flight { --bd: var(--bd-flight); --bg-c: var(--bg-flight); }
+.c-food { --bd: var(--bd-food); --bg-c: var(--bg-food); }
+.c-act { --bd: var(--bd-act); --bg-c: var(--bg-act); }
+.c-move { --bd: var(--bd-move); --bg-c: var(--bg-move); }
+.c-lagoon { --bd: var(--bd-lagoon); --bg-c: var(--bg-lagoon); }
+.detail { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+.detail .dt { font-weight: 600; }
+.detail .dm { font-size: 13.5px; color: var(--muted); }
+.detail .acts { display: flex; gap: 8px; flex-wrap: wrap; }
+.hint { font-size: 13px; color: var(--muted); }
+.notice { font-size: 13px; background: color-mix(in srgb, var(--flex) 22%, var(--surface)); border-radius: 6px; padding: 8px 12px; }
+
+/* itinerary */
+.jump { display: flex; flex-wrap: wrap; gap: 8px; }
+.jump a { text-decoration: none; color: var(--fg); border: 1px solid var(--line); border-top: 3px solid var(--c); background: var(--surface); border-radius: 6px; padding: 5px 12px; font-size: 13px; font-weight: 600; }
+.jump a:hover { border-color: var(--accent); }
+.stack { display: flex; flex-direction: column; gap: 16px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 16px; min-width: 0; scroll-margin-top: 12px; }
+.panel-head { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; justify-content: space-between; }
+.panel-head h2 { font-size: 24px; }
+.dayno { font-family: var(--font-mono); font-size: 12px; color: var(--muted); letter-spacing: 0.04em; }
+.chip { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: var(--surface-2); }
+.chip.ok { background: color-mix(in srgb, var(--tour) 22%, var(--surface)); }
+.chip.warn { background: color-mix(in srgb, var(--flex) 28%, var(--surface)); }
+.light { display: flex; flex-direction: column; gap: 6px; }
+.track { position: relative; height: 12px; border-radius: 3px; background: var(--night); overflow: hidden; }
+.track .sun { position: absolute; top: 0; bottom: 0; background: var(--day); }
+.ticks { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
+.light-note { font-size: 13px; color: var(--muted); }
+.light-note b { color: var(--fg); font-family: var(--font-mono); font-weight: 500; }
+.tl { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.tl li { display: grid; grid-template-columns: 100px minmax(0, 1fr) auto; gap: 12px; padding-block: 10px; border-top: 1px solid var(--line); align-items: start; }
+.tl li:first-child { border-top: 0; }
+.tl .t { font-family: var(--font-mono); font-size: 12px; color: var(--muted); padding-top: 2px; }
+.tl .what { font-weight: 600; }
+.tl .why { color: var(--muted); font-size: 13.5px; margin-top: 2px; }
+.tl li.done .what { color: var(--muted); text-decoration: line-through; }
+.tl label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+.tl input[type="checkbox"], .checks input { margin-top: 4px; accent-color: var(--accent); width: 16px; height: 16px; flex: none; }
+.tl .body { min-width: 0; }
+.dayacts { display: flex; flex-wrap: wrap; gap: 8px; }
+textarea { width: 100%; min-height: 70px; resize: vertical; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 10px; }
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; }
+.fgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.fhead { font-weight: 600; font-size: 14px; }
+.field { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.field input, .field select, .budget-table input[type="number"], .budget-table input[type="text"], .budget-table select, .set input { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 7px 9px; width: 100%; min-width: 0; }
+.verdict { font-size: 13.5px; background: var(--surface-2); border-radius: 6px; padding: 10px 12px; }
+.verdict b { font-family: var(--font-mono); font-weight: 500; color: var(--lava); }
+.bar { height: 6px; border-radius: 3px; background: var(--surface-2); overflow: hidden; }
+.bar > div { height: 100%; background: var(--accent); width: 0; transition: width 0.25s; }
+.checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.checks label { display: flex; gap: 10px; align-items: flex-start; padding: 5px 0; cursor: pointer; }
+.checks input:checked + span { color: var(--muted); text-decoration: line-through; }
+.group-h { margin-top: 8px; }
+.tips { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; }
+
+/* budget */
+.sums { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.sum { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; }
+.sum b { display: block; font-family: var(--font-display); font-size: 28px; line-height: 1.1; margin-top: 2px; }
+.sum.lead b { color: var(--lava); }
+.set { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: end; }
+.set .field { width: 140px; }
+.tablebox { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.budget-table { width: 100%; border-collapse: collapse; min-width: 1040px; }
+.budget-table th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); padding: 10px 8px; border-bottom: 1px solid var(--line); }
+.budget-table td { padding: 8px; border-top: 1px solid var(--line); vertical-align: middle; }
+.budget-table tr:first-child td { border-top: 0; }
+.budget-table .num { text-align: right; }
+.budget-table td.nm { min-width: 250px; }
+.budget-table td.in { width: 190px; }
+.budget-table td.q { width: 74px; }
+.budget-table td.ct { width: 140px; }
+.budget-table .pr { display: flex; gap: 4px; }
+.budget-table .pr input { flex: 1; }
+.budget-table .pr select { width: 66px; flex: none; }
+.budget-table input[type="checkbox"] { accent-color: var(--accent); width: 16px; height: 16px; }
+.budget-table .wh { margin-top: 4px; font-size: 12.5px; }
+.src { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 8px; border-radius: 999px; margin-top: 4px; }
+.src.list { background: color-mix(in srgb, var(--tour) 22%, var(--surface)); }
+.src.est { background: color-mix(in srgb, var(--flex) 28%, var(--surface)); }
+.src.enter, .src.mine { background: var(--surface-2); }
+tr.off td { opacity: 0.45; }
+.cats { display: flex; flex-direction: column; gap: 8px; }
+.catrow { display: grid; grid-template-columns: 80px minmax(0, 1fr) 80px; gap: 12px; align-items: center; font-size: 13.5px; }
+.catbar { height: 14px; background: var(--surface-2); border-radius: 3px; overflow: hidden; }
+.catbar div { height: 100%; background: var(--accent); }
+.catrow .v { text-align: right; }
+.note { font-size: 12.5px; color: var(--muted); }
+footer { color: var(--muted); font-size: 12.5px; }
+
+/* hotels */
+.bt { background: var(--surface); border: 0; border-top: 2px solid var(--line); border-left: 1px solid var(--line); padding: 8px 8px 10px; text-align: left; font-size: 12.5px; line-height: 1.25; color: var(--fg); min-width: 0; }
+.bt.corner { border-left: 0; display: flex; align-items: center; justify-content: flex-end; }
+.bt.city { background: color-mix(in srgb, var(--lagoon) 18%, var(--surface)); box-shadow: inset 4px 0 0 var(--lagoon); }
+.bt.tour { background: color-mix(in srgb, var(--tour) 18%, var(--surface)); box-shadow: inset 4px 0 0 var(--tour); }
+.bt.plane { background: color-mix(in srgb, var(--fly) 16%, var(--surface)); box-shadow: inset 4px 0 0 var(--fly); }
+.bt.gap { background: color-mix(in srgb, var(--lava) 16%, var(--surface)); box-shadow: inset 4px 0 0 var(--lava); }
+.bt .sk { display: block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.bt .sn { display: block; font-weight: 600; overflow-wrap: anywhere; padding-left: 4px; }
+.bt .sp { display: block; font-size: 11.5px; color: var(--muted); overflow-wrap: anywhere; padding-left: 4px; }
+.cover { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; }
+.nt { border: 1px solid var(--line); border-left: 4px solid var(--tour); background: var(--surface); border-radius: 6px; padding: 8px 10px; font-size: 13px; min-width: 0; overflow-wrap: anywhere; }
+.nt.gap { border-left-color: var(--lava); }
+.nt.plane { border-left-color: var(--fly); }
+.nt b { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.stgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.stgrid .full { grid-column: 1 / -1; }
+.stgrid .pr { display: flex; gap: 4px; }
+.stgrid .pr input { flex: 1; }
+.stgrid .pr select { width: 72px; flex: none; }
+.stgrid input[type="text"], .stgrid input[type="date"], .stgrid input[type="number"] { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 7px 9px; width: 100%; min-width: 0; }
+.stnote { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 7px 9px; width: 100%; min-height: 0; resize: vertical; }
+
+#newCat { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 6px 9px; }
+.cathead td { background: var(--surface-2); font-family: var(--font-display); font-weight: 700; font-size: 15px; padding: 8px 10px; }
+.cathead td.num { font-family: var(--font-mono); font-weight: 500; font-size: 14px; }
+
+/* editor */
+.modal { position: fixed; inset: 0; background: rgba(5, 15, 20, 0.55); display: flex; align-items: center; justify-content: center; padding: 16px; z-index: 50; }
+.mpanel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 20px; width: min(500px, 100%); max-height: 100%; overflow: auto; display: flex; flex-direction: column; gap: 12px; }
+.mrow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.mact { display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; align-items: center; }
+.chk { display: flex; gap: 8px; align-items: center; font-size: 13.5px; }
+.chk input { accent-color: var(--accent); width: 16px; height: 16px; }
+
+@media (max-width: 760px) { .two { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 480px) {
+  .tl li { grid-template-columns: minmax(0, 1fr) auto; gap: 2px 8px; }
+  .tl .t { grid-column: 1 / -1; }
+  .fgrid, .mrow { grid-template-columns: minmax(0, 1fr); }
+  .tab { padding: 8px 14px; }
+  .catrow { grid-template-columns: 64px minmax(0, 1fr) 64px; }
+}
+@media (prefers-reduced-motion: reduce) { .bar > div { transition: none; } }
+
+/* reader mode */
+.ro .btn:not(.keep), .ro #addCal, .ro .modal { display: none !important; }
+.ro .tl input, .ro .dayacts, .ro .panel textarea, .ro label[for^="notes-"], .ro #resetSched, .ro #p-it .two > .panel:nth-child(2), .ro .fgrid, .ro #flightNotice + .fhead + .fgrid, .ro #p-it .two .note,
+.ro #stayList, .ro #p-hot .toolbar, .ro #p-hot > .note, .ro #stayMsg, .ro #p-bud .set, .ro #p-bud .tablebox, .ro #p-bud .toolbar, .ro #p-bud > .note, .ro #p-bud .sums { display: none !important; }
+.ro .tl label { cursor: default; }
+.ro .two { grid-template-columns: minmax(0, 1fr); }
+.ro .tl li { grid-template-columns: 150px minmax(0, 1fr); }
+.ro .tl .t { font-size: 12.5px; color: var(--fg); }
+.ro .tl .what { font-size: 15px; }
+.ro .tl .why { font-size: 14px; max-width: 70ch; }
+.ro .tl li { padding-block: 12px; }
+.ro .panel { padding: 24px; }
+.ro .panel-head h2 { font-size: 26px; }
+.ro .evb .em { font-size: 10.5px; }
+.rof { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.rof > div { background: var(--surface-2); border-radius: 8px; padding: 10px 12px; }
+.rof b { display: block; font-family: var(--font-display); font-size: 20px; font-weight: 500; }
+.rof span { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 600; }
+.rohotel { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; align-items: baseline; }
+.rohotel h3 { font-size: 20px; }
+.rohotel .big { font-family: var(--font-display); font-size: 22px; text-align: right; }
+.robud { display: flex; flex-direction: column; gap: 14px; }
+.robud .cat { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.robud .ch { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 18px; background: var(--surface-2); font-family: var(--font-display); font-weight: 700; font-size: 17px; }
+.robud .ch .mono { font-weight: 500; font-size: 15px; }
+.robud .ln { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 12px 18px; border-top: 1px solid var(--line); }
+.robud .ln .nm { font-weight: 600; }
+.robud .ln .wn { grid-column: 1; font-size: 13px; color: var(--muted); }
+.robud .ln .am { grid-row: 1 / span 2; grid-column: 2; text-align: right; font-family: var(--font-mono); align-self: center; }
+.robud .ln.tot { background: var(--surface-2); font-family: var(--font-display); font-size: 18px; }
+.robud .ln.tot .am { font-size: 20px; font-weight: 700; }
+.robud .ln { padding-block: 10px; }
+.robud .ln.off { opacity: 0.45; }
+.roview { font-size: 12.5px; color: var(--muted); }
+@media (max-width: 480px) { .ro .tl li { grid-template-columns: minmax(0, 1fr); } .ro .panel { padding: 16px; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="route">IAD → KEF · FEB 12–18, 2027</div>
+      <h1>Iceland, February 2027</h1>
+    </div>
+    <div class="count"><b id="count">–</b><span class="label" id="countLabel">days to departure</span></div>
+  </header>
+
+  <div class="tabs" role="tablist" aria-label="Dashboard sections">
+    <button class="tab" role="tab" id="tab-cal" data-tab="cal" aria-controls="p-cal" type="button">Calendar</button>
+    <button class="tab" role="tab" id="tab-it" data-tab="it" aria-controls="p-it" type="button">Itinerary</button>
+    <button class="tab" role="tab" id="tab-hot" data-tab="hot" aria-controls="p-hot" type="button">Hotels</button>
+    <button class="tab" role="tab" id="tab-bud" data-tab="bud" aria-controls="p-bud" type="button">Budget</button>
+  </div>
+
+  <!-- CALENDAR -->
+  <section id="p-cal" role="tabpanel" aria-labelledby="tab-cal" class="cal-wrap">
+    <div class="toolbar">
+      <div class="legend">
+        <span><i style="--b:var(--bd-flight);--g:var(--bg-flight)"></i>Flight</span>
+        <span><i style="--b:var(--bd-lagoon);--g:var(--bg-lagoon)"></i>Lagoon</span>
+        <span><i style="--b:var(--bd-act);--g:var(--bg-act)"></i>Sightseeing and tour</span>
+        <span><i style="--b:var(--bd-food);--g:var(--bg-food)"></i>Meals</span>
+        <span><i style="--b:var(--bd-move);--g:var(--bg-move)"></i>Transfers and airport</span>
+        <span><i style="--b:var(--tour);--g:color-mix(in srgb, var(--tour) 30%, transparent)"></i>3-day Troll.is tour (Feb 14–16)</span>
+      </div>
+      <button class="btn primary" id="addCal" type="button">Add event</button>
+    </div>
+    <div class="notice" id="calNotice" hidden></div>
+    <div class="calbox" id="calbox"><div class="tg" id="tg"></div></div>
+    <div class="detail" id="detail"></div>
+    <div class="hint">Select any block to edit or delete it, or use Add event. Shaded areas are night. Friday evening is shown in Virginia time and Saturday onward in Iceland time (5 hours ahead).</div>
+  </section>
+
+  <!-- ITINERARY -->
+  <section id="p-it" role="tabpanel" aria-labelledby="tab-it" class="stack" hidden>
+    <div class="jump" id="jump"></div>
+    <div class="stack" id="days"></div>
+    <div class="two">
+      <section class="panel">
+        <h3>Flights</h3>
+        <div class="notice" id="flightNotice"></div>
+        <div class="fhead">Outbound · Fri Feb 12, Dulles to Keflavík</div>
+        <div class="fgrid">
+          <div class="field"><label class="label" for="outNo">Flight</label><input id="outNo"></div>
+          <div class="field"><label class="label" for="outDep">Departs IAD</label><input id="outDep" type="time"></div>
+          <div class="field"><label class="label" for="outArr">Arrives KEF (Sat)</label><input id="outArr" type="time"></div>
+        </div>
+        <div class="fhead">Return · Thu Feb 18, Keflavík to Dulles</div>
+        <div class="fgrid">
+          <div class="field"><label class="label" for="retNo">Flight</label><input id="retNo"></div>
+          <div class="field"><label class="label" for="retDep">Departs KEF</label><input id="retDep" type="time"></div>
+          <div class="field"><label class="label" for="retArr">Arrives IAD</label><input id="retArr" type="time"></div>
+        </div>
+        <div class="verdict" id="verdict"></div>
+        <div class="note">Changing a flight time updates the flight, airport and transfer blocks. Use "Rebuild day" on Feb 18 to re-time the airport transfer around the new flight.</div>
+      </section>
+      <section class="panel">
+        <div class="panel-head"><h3>To do</h3><span class="muted mono" id="progressText"></span></div>
+        <div class="bar"><div id="progress"></div></div>
+        <ul class="checks" id="checks"></ul>
+      </section>
+    </div>
+    <section class="panel">
+      <h3>Good to know</h3>
+      <ul class="tips">
+        <li>Daylight runs roughly 7 hours at the start of February and about 10 by the end. The suggested plan keeps outdoor stops between about 9:30 and 17:30.</li>
+        <li>Troll.is can change the route for weather and road conditions. Multi-day tours can be changed or cancelled up to 24 hours before departure by email to info@troll.is.</li>
+        <li>The ice cave depends on weather and the glacier. Northern Lights are not guaranteed on the tour either.</li>
+        <li>Iceland's pools and lagoons ask everyone to shower without a swimsuit before entering. Sockets are the European two-pin type (230 V).</li>
+        <li>You have no car. Central Reykjavík is walkable. For the lagoons, Perlan and the airport, use buses, taxis or booked transfers.</li>
+        <li>If the weather turns, swap in the National Museum of Iceland (2 hours), Whales of Iceland (1.5 hours) or a local geothermal pool such as Sundhöllin.</li>
+      </ul>
+      <div><button class="btn danger" id="resetSched" type="button">Reset all days to the suggested plan</button></div>
+    </section>
+  </section>
+
+  <!-- HOTELS -->
+  <section id="p-hot" role="tabpanel" aria-labelledby="tab-hot" class="stack" hidden>
+    <div>
+      <div class="label" style="margin-bottom:8px">Night by night</div>
+      <div class="cover" id="cover"></div>
+    </div>
+    <div class="stack" id="stayList"></div>
+    <div class="toolbar">
+      <button class="btn primary" id="addStay" type="button">Add hotel</button>
+      <span class="note" id="stayTotal"></span>
+      <button class="btn" id="stayToBud" type="button">Update hotel cost in budget</button>
+    </div>
+    <div class="note" id="stayMsg"></div>
+    <div class="note">Hotel names and status also show under each date in the Calendar and in each day of the Itinerary. Enter the total price for the whole stay, not per night. The two Reykjavík stays are placeholders, so change them to your real bookings.</div>
+  </section>
+
+  <!-- BUDGET -->
+  <section id="p-bud" role="tabpanel" aria-labelledby="tab-bud" class="stack" hidden>
+    <div class="sums">
+      <div class="sum lead"><span class="label">Trip total</span><b id="sTotal">$0</b></div>
+    </div>
+    <div class="set">
+      <div class="field"><label class="label" for="trav">Travelers</label><input id="trav" type="number" min="1" max="12" step="1"></div>
+      <div class="field"><label class="label" for="rate">ISK per US dollar</label><input id="rate" type="number" min="50" max="400" step="1"></div>
+      <div class="note" style="max-width:420px">Every field in the table is editable. Per-person lines are multiplied by travelers. Set the exchange rate to today's rate for ISK prices.</div>
+    </div>
+    <div class="tablebox">
+      <table class="budget-table">
+        <thead><tr><th>Count</th><th>Item</th><th>Category</th><th>Price</th><th>Qty</th><th>Per person</th><th class="num">Total (USD)</th><th></th></tr></thead>
+        <tbody id="bbody"></tbody>
+      </table>
+    </div>
+    <div class="toolbar">
+      <span style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><label class="label" for="newCat">Category</label><select id="newCat"></select><button class="btn primary" id="addLine" type="button">Add budget line</button></span>
+      <button class="btn danger" id="resetBud" type="button">Reset budget to suggested lines</button>
+    </div>
+    <section class="panel" hidden style="display:none">
+      <h3>Where the money goes</h3>
+      <div class="cats" id="cats"></div>
+    </section>
+    <div class="note">Tour and lagoon prices started as "from" prices published by the sellers and change by date and time slot. "Estimate" lines are my planning figures. Editing a price marks the line as yours.</div>
+  </section>
+
+  <footer>Tour details combine the Troll.is page and the TourRadar listing for the same 3-day tour. Exact stop order can change with weather. Daylight hours are approximate for Reykjavík. Your edits are saved in this browser only.</footer>
+</div>
+
+<div class="modal" id="modal" hidden>
+  <form class="mpanel" id="mform" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <h3 id="mTitle">Event</h3>
+    <div class="field"><label class="label" for="eTitle">Title</label><input id="eTitle" required></div>
+    <div class="field"><label class="label" for="eSub">Short detail (optional)</label><input id="eSub"></div>
+    <div class="mrow">
+      <div class="field"><label class="label" for="eDay">Day</label><select id="eDay"></select></div>
+      <div class="field"><label class="label" for="eCat">Type</label>
+        <select id="eCat">
+          <option value="act">Sightseeing or tour</option>
+          <option value="food">Meal</option>
+          <option value="lagoon">Lagoon or pool</option>
+          <option value="move">Transfer or airport</option>
+          <option value="flight">Flight</option>
+        </select></div>
+      <div class="field"><label class="label" for="eStart">Starts</label><input id="eStart" type="time" required></div>
+      <div class="field"><label class="label" for="eEnd">Ends (00:00 means midnight)</label><input id="eEnd" type="time" required></div>
+    </div>
+    <label class="chk"><input id="eTent" type="checkbox"> Timing is approximate or to confirm</label>
+    <div class="field"><label class="label" for="eNote">Notes</label><textarea id="eNote"></textarea></div>
+    <div class="mact">
+      <button class="btn danger" id="eDel" type="button">Delete</button>
+      <span style="display:flex;gap:8px"><button class="btn" id="eCancel" type="button">Cancel</button><button class="btn primary" type="submit">Save</button></span>
+    </div>
+  </form>
+</div>
+
+<script>
+(function () {
+  var RO = true, DB = null;
+  var MIRROR = {"fields": {"outDep": "19:40", "outArr": "06:30", "retArr": "18:30"}, "budget": {"fl": {}, "tr": {}, "tour": {}, "bl": {}, "sky": {}, "htl": {}, "meals": {}, "perlan": {}, "aur": {}, "pool": {}, "ins": {}, "misc": {}}, "trav": 1, "rate": 130, "done": {"2027-02-12-0": false}, "sched": {"12": [{"id": "emv5lx3ep12v6", "s": 1000, "e": 1180, "title": "At Dulles", "sub": "", "cat": "move", "note": "International check-in and security take time. Arrive 3 hours before departure.", "tent": false, "fl": "outair", "done": false}, {"id": "emv5lx3ep23s0", "s": 1180, "e": 1440, "title": "FI 644 IAD → KEF", "sub": "Departs 19:40", "cat": "flight", "note": "Nonstop, about 6 hours. Iceland is 5 hours ahead of Virginia in winter, so you land early Saturday (scheduled 06:30). Sleep as much as you can.", "tent": false, "fl": "out", "done": false}], "13": [{"id": "emv5mogg033bo", "s": 0, "e": 390, "title": "FI 644 lands at KEF", "sub": "Arrives 06:30", "cat": "flight", "note": "Scheduled arrival at Keflavík 06:30.", "tent": false, "fl": "outarr", "done": false}, {"id": "emv5mogg045sf", "s": 390, "e": 510, "title": "Customs, bags, transfer", "sub": "", "cat": "move", "note": "No car, so take a Blue Lagoon bus from the airport (about 20 minutes). Ask the lagoon about luggage storage when you book.", "tent": false, "fl": "outtr", "done": false}, {"id": "emv5mogg052z5", "s": 600, "e": 750, "title": "Blue Lagoon", "sub": "Book the 10:00 slot", "cat": "lagoon", "note": "About 20 minutes from the airport by Blue Lagoon bus. Book a 10:00 slot so you have time after landing. Shower before entering and keep your hair out of the water.", "tent": false, "fl": "", "done": false}, {"id": "emv5mogg0653o", "s": 750, "e": 795, "title": "Lunch", "sub": "", "cat": "food", "note": "Eat at the lagoon before the bus.", "tent": false, "fl": "", "done": false}, {"id": "emv5mogg075at", "s": 795, "e": 870, "title": "Bus to Reykjavík", "sub": "Blue Lagoon bus", "cat": "move", "note": "Blue Lagoon buses run on a timetable to Reykjavík and take about 45 to 60 minutes. Book your return seat with your entry and pick a departure around 13:00.", "tent": true, "fl": "", "done": false}, {"id": "emv5mogg081b4", "s": 870, "e": 930, "title": "Drop bags at the hotel", "sub": "", "cat": "move", "note": "Check in if your room is ready, or leave bags at the front desk.", "tent": false, "fl": "", "done": false}, {"id": "emv5mogg096he", "s": 990, "e": 1065, "title": "Hallgrímskirkja and old town", "sub": "Tower view at sunset", "cat": "act", "note": "Walk up through the old town and take the lift up the church tower for views at sunset (around 17:25). Wander Laugavegur on the way back.", "tent": false, "fl": "", "done": false}, {"id": "emv5mogg010xm", "s": 1140, "e": 1215, "title": "Dinner", "sub": "Lamb soup or fish", "cat": "food", "note": "Lamb soup or fresh fish, then an early night. Pickup is between 8:00 and 8:45 AM tomorrow.", "tent": false, "fl": "", "done": false}], "14": [{"id": "emv5n3xs313jf", "s": 420, "e": 480, "title": "Breakfast", "sub": "", "cat": "food", "note": "Eat before pickup.", "tent": false, "fl": "", "done": false}, {"id": "emv5n3xs321k1", "s": 480, "e": 525, "title": "Tour pickup in Reykjavík", "sub": "8:00–8:45, your chosen point", "cat": "move", "note": "The tour departs at 8:00 AM and pickup runs 8:00 to 8:45 from the point you chose at booking. Minibus with a guide who shares Iceland's history, culture and geology on the drive east.", "tent": true, "fl": "", "done": false}, {"id": "emv5n3xs33510", "s": 570, "e": 645, "title": "Þingvellir National Park", "sub": "Stop 1 · time approximate", "cat": "act", "note": "UNESCO World Heritage Site where the North American and Eurasian plates drift apart in a visible rift valley. It is also the birthplace of the world's oldest parliament (930 AD) and has Iceland's largest natural lake.", "tent": true, "fl": "", "done": false}, {"id": "emv5n3xs344nm", "s": 660, "e": 720, "title": "Brúarfoss", "sub": "Stop 2 · time approximate", "cat": "act", "note": "Known as Iceland's bluest waterfall, with sapphire water cascading over dark lava rock.", "tent": true, "fl": "", "done": false}, {"id": "emv5n3xs3576b", "s": 750, "e": 825, "title": "Geysir geothermal area", "sub": "Stop 3 · time approximate", "cat": "act", "note": "Bubbling mud pools and steaming vents. Strokkur erupts every few minutes, sometimes up to about 35 meters high.", "tent": true, "fl": "", "done": false}, {"id": "emv5n3xs362hw", "s": 840, "e": 885, "title": "Gullfoss", "sub": "Stop 4 · time approximate", "cat": "act", "note": "The two-tiered Golden Falls, fed by Langjökull meltwater, drop into a canyon. Look for a rainbow on sunny days.", "tent": true, "fl": "", "done": false}, {"id": "emv5n3xs373p", "s": 960, "e": 1005, "title": "Seljalandsfoss", "sub": "Stop 5 · time approximate", "cat": "act", "note": "Walk behind the cascade for a one-of-a-kind view. Bring a rain jacket and boots with grip, since the path can be icy.", "tent": true, "fl": "", "done": false}, {"id": "emv5n3xs385po", "s": 1080, "e": 1140, "title": "Hotel and dinner", "sub": "Drangshlíð Hotel or similar", "cat": "food", "note": "Countryside overnight at Drangshlíð Hotel by Troll.is, or similar, in the same area as tomorrow's activities. Breakfast is included. Dinner and rest before day 2, which continues toward Vatnajökull and the Glacier Lagoon.", "tent": true, "fl": "", "done": false}, {"id": "emv623jhg1978e", "fl": "", "done": false, "title": "Northern Lights sightseeing · If the sky is clear (timing to confirm)", "sub": "", "s": 1260, "e": 1380, "cat": "act", "tent": false, "note": ""}], "15": [{"id": "emv5n4w0712fs", "s": 450, "e": 540, "title": "Breakfast", "sub": "", "cat": "food", "note": "Included at the tour hotel.", "tent": false, "fl": "", "done": false}, {"id": "emv5n4w07256", "s": 570, "e": 630, "title": "Skógafoss", "sub": "Stop 1 · time approximate", "cat": "act", "note": "A powerful 60-meter waterfall pouring into the Skógá River. Climb the staircase beside the falls for sweeping coastline views, and look for rainbows in the spray. Short drive from the hotel.", "tent": true, "fl": "", "done": false}, {"id": "emv5n4w073ez", "s": 750, "e": 930, "title": "Glacier hike on Falljökull", "sub": "Stop 2 · time approximate", "cat": "act", "note": "Meet your certified glacier guide, gear up with helmet, crampons and ice axe, and walk across blue ice, deep crevasses and frozen sculptures. If weather or safety rules out this glacier, the tour may use another suitable one. Wear thermal layers under your shell and bring snacks. Activities may also move between days.", "tent": true, "fl": "", "done": false}, {"id": "emv5n4w07413i", "s": 1020, "e": 1140, "title": "Hotel and dinner", "sub": "Hrífunes Hotel or similar", "cat": "food", "note": "Hrífunes Hotel by Troll.is, or similar, a quiet countryside inn between the South Coast waterfalls and Vatnajökull National Park. Breakfast is included. The drive east continues tomorrow morning.", "tent": true, "fl": "", "done": false}, {"id": "emv5n4w0752z5", "s": 1260, "e": 1380, "title": "Northern Lights sightseeing", "sub": "If the sky is clear", "cat": "act", "note": "On arrival your guide shares tonight's chances. Take a walk in the dark if the sky is clear and the forecast is good. Never guaranteed.", "tent": true, "fl": "", "done": false}], "16": [{"id": "emv5n7ypb13oy", "s": 450, "e": 510, "title": "Breakfast", "sub": "", "cat": "food", "note": "Included at the tour hotel.", "tent": false, "fl": "", "done": false}, {"id": "emv5n7ypb23ve", "s": 570, "e": 630, "title": "Jökulsárlón Glacier Lagoon", "sub": "Stop 1 · time approximate", "cat": "act", "note": "A glacial lake about 200 m deep, filled with icebergs that calve from the Breiðamerkurjökull glacier. Seals often rest on the ice. Activities may move between days.", "tent": true, "fl": "", "done": false}, {"id": "emv5n7ypb36qa", "s": 630, "e": 675, "title": "Diamond Beach", "sub": "Stop 2 · time approximate", "cat": "act", "note": "Just across the road, where icebergs wash up as glittering ice chunks on black sand.", "tent": true, "fl": "", "done": false}, {"id": "emv5n7ypb47nn", "s": 690, "e": 870, "title": "Natural ice cave", "sub": "Stop 3 · time approximate", "cat": "act", "note": "Join an ice cave tour from Jökulsárlón: a Super-Jeep ride to the glacier, a short hike, then you walk into the cave. Winter only, depends on weather and the glacier.", "tent": true, "fl": "", "done": false}, {"id": "emv5n7ypb520w", "s": 1000, "e": 1060, "title": "Reynisfjara Black Sand Beach", "sub": "Stop 4 · time approximate", "cat": "act", "note": "On the way back: basalt columns, powerful waves (stay well back from the water) and the Dyrhólaey cliffs in the distance.", "tent": true, "fl": "", "done": false}, {"id": "emv5n7ypb61a5", "s": 1060, "e": 1200, "title": "Return to Reykjavík", "sub": "Back about 8 PM", "cat": "move", "note": "Estimated arrival around 8:00 PM, varying with weather and road conditions. The tour hotels cover only 2 nights, so your own hotel starts tonight.", "tent": true, "fl": "", "done": false}, {"id": "emv5n7ypb73fu", "s": 1230, "e": 1290, "title": "Late dinner", "sub": "", "cat": "food", "note": "Something simple near your hotel after a long day.", "tent": true, "fl": "", "done": false}], "17": [{"id": "emv5mogg011o1", "s": 570, "e": 630, "title": "Breakfast", "sub": "", "cat": "food", "note": "Slow start after three early mornings.", "tent": false, "fl": "", "done": false}, {"id": "emv5mogg012326", "s": 630, "e": 720, "title": "Harpa and Sun Voyager", "sub": "Waterfront walk", "cat": "act", "note": "A flat waterfront walk from the concert hall to the steel ship sculpture, with mountains across the bay.", "tent": false, "fl": "", "done": false}, {"id": "emv5mogg0131yh", "s": 720, "e": 780, "title": "Lunch", "sub": "Old harbour", "cat": "food", "note": "Fish soup or the fish of the day at the old harbour.", "tent": false, "fl": "", "done": false}, {"id": "emv5mogg0146xw", "s": 780, "e": 900, "title": "Perlan", "sub": "Glacier exhibit, aurora show", "cat": "act", "note": "Glacier and ice cave exhibit, an aurora show in the planetarium and views from the top. Take a city bus or taxi from downtown.", "tent": false, "fl": "", "done": false}, {"id": "emv5mogg0154ni", "s": 900, "e": 930, "title": "Taxi to Sky Lagoon", "sub": "", "cat": "move", "note": "A short ride across town to Kópavogur by taxi or city bus.", "tent": true, "fl": "", "done": false}, {"id": "emv5mogg0162yi", "s": 930, "e": 1050, "title": "Sky Lagoon", "sub": "Soak at sunset", "cat": "lagoon", "note": "In Kópavogur. Book this slot ahead. Soak around sunset (about 17:30) and allow time for the shower rules.", "tent": false, "fl": "", "done": false}, {"id": "emv5mogg0171b6", "s": 1140, "e": 1230, "title": "Dinner", "sub": "", "cat": "food", "note": "Your last full night.", "tent": false, "fl": "", "done": false}], "18": [{"id": "emv5mogg0194sc", "s": 510, "e": 570, "title": "Breakfast, check out", "sub": "", "cat": "food", "note": "Store bags at the hotel front desk. Hotels will usually hold luggage for the morning. Times follow the departure under Flights, which you can change.", "tent": false, "fl": "", "done": false}, {"id": "emv5mogg0206ns", "s": 570, "e": 680, "title": "Laugavegur and Hallgrímskirkja", "sub": "", "cat": "act", "note": "Last souvenirs and a lopapeysa, the traditional wool sweater. Take the lift up the church tower for a rooftop view.", "tent": false, "fl": "", "done": false}, {"id": "emv5mogg021si", "s": 680, "e": 770, "title": "Early lunch, collect bags", "sub": "", "cat": "food", "note": "Eat before the transfer, then pick up your bags.", "tent": false, "fl": "", "done": false}, {"id": "emv5mogg0226os", "s": 770, "e": 830, "title": "Bus or taxi to Keflavík", "sub": "", "cat": "move", "note": "No car, so use a Flybus coach or a taxi or booked transfer. About 45 to 50 minutes. Book it ahead and confirm the pickup point.", "tent": true, "fl": "retxfer", "done": false}, {"id": "emv5mogg02323h", "s": 830, "e": 1010, "title": "Airport check-in", "sub": "", "cat": "move", "note": "Arrive 3 hours before departure.", "tent": false, "fl": "retair", "done": false}, {"id": "emv5mogg024cp", "s": 1010, "e": 1130, "title": "FI 645 KEF → IAD", "sub": "Departs 16:50", "cat": "flight", "note": "Departs Keflavík 16:50, arrives Dulles 18:30 the same day. You gain 5 hours going west.", "tent": false, "fl": "ret", "done": false}]}, "bud": [{"id": "fl", "cat": "Transport", "name": "Round-trip flights", "when": "", "unit": "649", "cur": "USD", "per": 1, "mult": 1, "src": "mine"}, {"id": "tr", "cat": "Lagoons", "name": "Blue Lagoon", "when": "", "unit": "250", "cur": "USD", "per": 1, "mult": 1, "src": "mine"}, {"id": "tour", "cat": "Tour", "name": "Troll.is 3-day Tour", "when": "", "unit": 1017, "cur": "USD", "per": 1, "mult": 1, "src": "list"}, {"id": "sky", "cat": "Lagoons", "name": "Sky Lagoon, Saman", "when": "", "unit": 13990, "cur": "ISK", "per": 1, "mult": 1, "src": "list"}, {"id": "htl", "cat": "Stay", "name": "Reykjavík hotel", "when": "Per person 3 nights", "unit": "429", "cur": "USD", "per": 1, "mult": "1", "src": "mine"}, {"id": "perlan", "cat": "Extras", "name": "Perlan museum", "when": "", "unit": 40, "cur": "USD", "per": 1, "mult": 1, "src": "est"}, {"id": "misc", "cat": "Extras", "name": "Souvenirs and Other", "when": "", "unit": 100, "cur": "USD", "per": 1, "mult": 1, "src": "est"}, {"id": "bemv61mltj223f8", "cat": "Food", "name": "Restaurants", "when": "", "unit": "300", "cur": "USD", "per": 1, "mult": 1, "src": "mine"}, {"id": "bemv61vb2e1967s", "cat": "Extras", "name": "Transportation (Taxi)", "when": "", "unit": "100", "cur": "USD", "per": 1, "mult": 1, "src": "mine"}], "stays": [{"id": "emv5lzkjs11ky", "name": "Reykjavik Konsulat Hotel, Curio Collection by Hilton", "place": "", "inDate": "2027-02-13", "outDate": "2027-02-14", "price": "330", "cur": "USD", "status": "book", "note": "Pickup is 8:00 to 8:45 AM on Feb 14, so stay central."}, {"id": "emv5lzkjs271p", "name": "Included in the tour", "place": "", "inDate": "2027-02-14", "outDate": "2027-02-16", "price": 0, "cur": "USD", "status": "incl", "note": "Two nights with breakfast are part of the tour."}, {"id": "emv5lzkjs351w", "name": "Reykjavik Konsulat Hotel, Curio Collection by Hilton", "place": "", "inDate": "2027-02-16", "outDate": "2027-02-18", "price": "528.3", "cur": "USD", "status": "book", "note": "Price is after $300 Amex discount"}], "stayTotal": true, "ver": 2, "ver3": true, "ver4": true, "ver5": true};
+  var PH = 52;
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function hmx(m) { m = Math.round(m); var h = Math.floor(m / 60) % 24, mi = m % 60; if (!RO) return pad(h) + ":" + pad(mi); return ((h % 12) || 12) + ":" + pad(mi) + " " + (h < 12 ? "AM" : "PM"); }
+  function hmc(a, b) { if (!RO) return hmx(a) + " – " + (b >= 1440 ? "24:00" : hmx(b)); a = Math.round(a); var ha = Math.floor(a / 60) % 24, ma = a % 60; b = Math.round(b); var hb = Math.floor(b / 60) % 24, mb = b % 60; var sa = ((ha % 12) || 12) + (ma ? ":" + pad(ma) : ""), sb = ((hb % 12) || 12) + (mb ? ":" + pad(mb) : ""); var pa = ha < 12 ? "AM" : "PM", pb = hb < 12 ? "AM" : "PM"; return pa === pb ? sa + "–" + sb + " " + pb : sa + " " + pa + "–" + sb + " " + pb; }
+  function r5(m) { return Math.round(m / 5) * 5; }
+  function hm(m) { return hmx(r5(m)); }
+  function tmin(s) { return +s.slice(0, 2) * 60 + +s.slice(3); }
+  function $(id) { return document.getElementById(id); }
+  function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+  function usd(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+  var uidn = 0;
+  function uid() { uidn++; return "e" + Date.now().toString(36) + uidn + Math.floor(Math.random() * 1e4).toString(36); }
+
+  var state = { tab: "cal", checks: {}, notes: {}, fields: {}, budget: {}, trav: 1, rate: 130 };
+  try {
+    var raw = RO ? null : (localStorage.getItem("iceland-feb-2027-v5") || localStorage.getItem("iceland-feb-2027-v4"));
+    if (raw) { var p = JSON.parse(raw); for (var k in p) state[k] = p[k]; }
+  } catch (e) {}
+  if (RO && MIRROR) { for (var mk in MIRROR) state[mk] = MIRROR[mk]; }
+  var mirrorTimer = null, lastMirror = MIRROR ? JSON.stringify(MIRROR) : "";
+  function mirrorNow() {
+    if (RO || !DB) return;
+    var c = {}; for (var k2 in state) { if (k2 === "notes" || k2 === "checks" || k2 === "tab") continue; c[k2] = state[k2]; }
+    if (c.stays) c.stays = c.stays.map(function (x) { var y = {}; for (var q in x) if (q !== "conf") y[q] = x[q]; return y; });
+    var j = JSON.stringify(c); if (j === lastMirror) return; lastMirror = j;
+    DB.doc("plan/main").set({ json: j, at: Date.now() }).catch(function () { lastMirror = ""; });
+  }
+  function save() {
+    if (RO) return;
+    try { localStorage.setItem("iceland-feb-2027-v5", JSON.stringify(state)); } catch (e) {}
+    clearTimeout(mirrorTimer); mirrorTimer = setTimeout(mirrorNow, 1500);
+  }
+
+  function twoStep(btn, label, action) {
+    var armed = false, t = null, orig = btn.textContent;
+    btn.addEventListener("click", function () {
+      if (!armed) { armed = true; btn.textContent = label; btn.classList.add("armed"); t = setTimeout(function () { armed = false; btn.textContent = orig; btn.classList.remove("armed"); }, 3500); return; }
+      clearTimeout(t); armed = false; btn.textContent = orig; btn.classList.remove("armed"); action();
+    });
+  }
+
+  /* ---------- flights ---------- */
+  var FDEF = { outNo: "FI 644", outDep: "20:30", outArr: "07:20", retNo: "FI 645", retDep: "16:50", retArr: "18:20" };
+  function fv(k) { var v = state.fields[k]; return v ? v : FDEF[k]; }
+  function userSet(k) { return !!state.fields[k]; }
+  function flights() {
+    return { out: { no: fv("outNo"), dep: tmin(fv("outDep")), arr: tmin(fv("outArr")) },
+             ret: { no: fv("retNo"), dep: tmin(fv("retDep")), arr: tmin(fv("retArr")) } };
+  }
+  function allSet() { return Object.keys(FDEF).every(userSet); }
+
+  /* ---------- schedule ---------- */
+  var DAYS = [
+    { d: "2027-02-12", dow: "Fri", num: 12, type: "fly", what: "Fly out", sleep: "On the plane", title: "Fly out of Dulles", chip: ["ok", "Flight booked"] },
+    { d: "2027-02-13", dow: "Sat", num: 13, type: "lagoon", what: "Blue Lagoon", sleep: "Reykjavík hotel (book)", title: "Arrive, soak at the Blue Lagoon, settle in", chip: ["warn", "Book Blue Lagoon"] },
+    { d: "2027-02-14", dow: "Sun", num: 14, type: "tour", what: "Tour day 1", sleep: "Tour hotel (included)", title: "Tour day 1: Golden Circle and Seljalandsfoss", chip: ["ok", "Troll.is tour"] },
+    { d: "2027-02-15", dow: "Mon", num: 15, type: "tour", what: "Tour day 2", sleep: "Tour hotel (included)", title: "Tour day 2: Glacier hike and the South Coast", chip: ["ok", "Troll.is tour"] },
+    { d: "2027-02-16", dow: "Tue", num: 16, type: "tour", what: "Tour day 3", sleep: "Reykjavík hotel (book)", title: "Tour day 3: Glacier lagoon, ice cave and black sand beach", chip: ["warn", "Back ~8 PM"] },
+    { d: "2027-02-17", dow: "Wed", num: 17, type: "lagoon", what: "Sky Lagoon", sleep: "Reykjavík hotel (book)", title: "Sky Lagoon and a free day in Reykjavík", chip: ["warn", "Book Sky Lagoon"] },
+    { d: "2027-02-18", dow: "Thu", num: 18, type: "fly", what: "Fly home", sleep: "Home", title: "Last morning and fly home", chip: ["warn", "Book airport transfer"] }
+  ];
+  var TYPE = { fly: "var(--fly)", lagoon: "var(--lagoon)", tour: "var(--tour)", flex: "var(--flex)" };
+  function dayBy(num) { return DAYS.filter(function (d) { return d.num === num; })[0]; }
+  function E(s, e, title, cat, note, o) { o = o || {}; return { id: uid(), s: s, e: e, title: title, sub: o.sub || "", cat: cat, note: note || "", tent: !!o.tent, fl: o.fl || "", done: false }; }
+
+  function outEvents() {
+    var o = flights().out, trEnd = Math.min(o.arr + 120, 600);
+    if (trEnd <= o.arr) trEnd = o.arr + 30;
+    return {
+      outair: E(o.dep - 180, o.dep, "At Dulles", "move", "International check-in and security take time. Arrive 3 hours before departure.", { fl: "outair" }),
+      out: E(o.dep, 1440, o.no + " IAD → KEF", "flight", "Nonstop, about 6 hours. Iceland is 5 hours ahead of Virginia in winter, so you land early Saturday (scheduled " + hmx(o.arr) + "). Sleep as much as you can.", { sub: "Departs " + hmx(o.dep), fl: "out" }),
+      outarr: E(0, o.arr, o.no + " lands at KEF", "flight", "Scheduled arrival at Keflavík " + hmx(o.arr) + ".", { sub: "Arrives " + hmx(o.arr), fl: "outarr" }),
+      outtr: E(o.arr, trEnd, "Customs, bags, transfer", "move", "No car, so take a Blue Lagoon bus from the airport (about 20 minutes). Ask the lagoon about luggage storage when you book.", { fl: "outtr" })
+    };
+  }
+  function thursday() {
+    var f = flights().ret, dep = f.dep, leave = dep - 240, ev = [];
+    var assumed = !userSet("retDep");
+    var tag = assumed ? " Times follow the departure under Flights, which you can change." : "";
+    ev.push(E(510, 570, "Breakfast, check out", "food", "Store bags at the hotel front desk. Hotels will usually hold luggage for the morning." + tag));
+    if (leave - 90 - 570 >= 45) ev.push(E(570, leave - 90, "Laugavegur and Hallgrímskirkja", "act", "Last souvenirs and a lopapeysa, the traditional wool sweater. Take the lift up the church tower for a rooftop view."));
+    if (leave - 90 >= 570) ev.push(E(leave - 90, leave, "Early lunch, collect bags", "food", "Eat before the transfer, then pick up your bags."));
+    ev.push(E(leave, dep - 180, "Bus or taxi to Keflavík", "move", "No car, so use a Flybus coach or a taxi or booked transfer. About 45 to 50 minutes. Book it ahead and confirm the pickup point.", { fl: "retxfer", tent: true }));
+    ev.push(E(dep - 180, dep, "Airport check-in", "move", "Arrive 3 hours before departure.", { fl: "retair" }));
+    ev.push(E(dep, Math.min(dep + 120, 1440), f.no + " KEF → IAD", "flight", "Departs Keflavík " + hmx(dep) + ", arrives Dulles " + hmx(f.arr) + " the same day. You gain 5 hours going west.", { sub: "Departs " + hmx(dep), fl: "ret" }));
+    return ev;
+  }
+  function thursdayOld() {
+    var f = flights().ret, dep = f.dep, exit = r5(dep - 240), entry = exit - 120, ev = [];
+    var assumed = !userSet("retDep");
+    var tag = assumed ? " Times follow the departure under Flights, which you can change." : "";
+    ev.push(E(510, 570, "Breakfast, check out", "food", "Store bags at the hotel front desk. Hotels will usually hold luggage for the morning." + tag));
+    if (entry - 30 >= 10 * 60 + 15) ev.push(E(570, entry - 30, "Laugavegur and Hallgrímskirkja", "act", "Last souvenirs and a lopapeysa, the traditional wool sweater. Take the lift up the church tower for a rooftop view."));
+    ev.push(E(entry, exit, "Sky Lagoon", "lagoon", "In Kópavogur. Book this slot ahead. The soak and the shower rules take about 2 hours."));
+    ev.push(E(exit, dep - 180, "Drive to Keflavík", "move", "About 45 to 50 minutes. Return the rental or confirm your airport transfer."));
+    ev.push(E(dep - 180, dep, "Airport check-in", "move", "Arrive 3 hours before departure.", { fl: "retair" }));
+    ev.push(E(dep, Math.min(dep + 120, 1440), f.no + " KEF → IAD", "flight", "Departs Keflavík " + hmx(dep) + ", arrives Dulles " + hmx(f.arr) + " the same day. You gain 5 hours going west.", { sub: "Departs " + hmx(dep), fl: "ret" }));
+    return ev;
+  }
+  function DEF(num) {
+    var o;
+    if (num === 12) { o = outEvents(); return [o.outair, o.out]; }
+    if (num === 13) {
+      o = outEvents();
+      return [o.outarr, o.outtr,
+        E(600, 750, "Blue Lagoon", "lagoon", "About 20 minutes from the airport by Blue Lagoon bus. Book a 10:00 slot so you have time after landing. Shower before entering and keep your hair out of the water.", { sub: "Book the 10:00 slot" }),
+        E(750, 795, "Lunch", "food", "Eat at the lagoon before the bus."),
+        E(795, 870, "Bus to Reykjavík", "move", "Blue Lagoon buses run on a timetable to Reykjavík and take about 45 to 60 minutes. Book your return seat with your entry and pick a departure around 13:00.", { sub: "Blue Lagoon bus", tent: true }),
+        E(870, 930, "Drop bags at the hotel", "move", "Check in if your room is ready, or leave bags at the front desk."),
+        E(990, 1065, "Hallgrímskirkja and old town", "act", "Walk up through the old town and take the lift up the church tower for views at sunset (around 17:25). Wander Laugavegur on the way back.", { sub: "Tower view at sunset" }),
+        E(1140, 1215, "Dinner", "food", "Lamb soup or fresh fish, then an early night. Pickup is between 8:00 and 8:45 AM tomorrow.", { sub: "Lamb soup or fish" })];
+    }
+    if (num === 14) return [
+      E(420, 480, "Breakfast", "food", "Eat before pickup."),
+      E(480, 525, "Tour pickup in Reykjavík", "move", "The tour departs at 8:00 AM and pickup runs 8:00 to 8:45 from the point you chose at booking. Minibus with a guide who shares Iceland's history, culture and geology on the drive east.", { sub: "8:00–8:45, your chosen point", tent: true }),
+      E(570, 645, "Þingvellir National Park", "act", "UNESCO World Heritage Site where the North American and Eurasian plates drift apart in a visible rift valley. It is also the birthplace of the world's oldest parliament (930 AD) and has Iceland's largest natural lake.", { sub: "Stop 1", tent: true }),
+      E(660, 720, "Brúarfoss", "act", "Known as Iceland's bluest waterfall, with sapphire water cascading over dark lava rock.", { sub: "Stop 2", tent: true }),
+      E(750, 825, "Geysir geothermal area", "act", "Bubbling mud pools and steaming vents. Strokkur erupts every few minutes, sometimes up to about 35 meters high.", { sub: "Stop 3", tent: true }),
+      E(840, 885, "Gullfoss", "act", "The two-tiered Golden Falls, fed by Langjökull meltwater, drop into a canyon. Look for a rainbow on sunny days.", { sub: "Stop 4", tent: true }),
+      E(960, 1005, "Seljalandsfoss", "act", "Walk behind the cascade for a one-of-a-kind view. Bring a rain jacket and boots with grip, since the path can be icy.", { sub: "Stop 5", tent: true }),
+      E(1080, 1140, "Hotel and dinner", "food", "Countryside overnight at Drangshlíð Hotel by Troll.is, or similar, in the same area as tomorrow's activities. Breakfast is included. Dinner and rest before day 2, which continues toward Vatnajökull and the Glacier Lagoon.", { sub: "Drangshlíð Hotel or similar", tent: true }),
+      E(1260, 1380, "Northern Lights sightseeing", "act", "Offered in the evening in season (September to March). The hotel is far from city lights, but sightings are never guaranteed.", { sub: "If the sky is clear", tent: true })];
+    if (num === 15) return [
+      E(450, 540, "Breakfast", "food", "Included at the tour hotel."),
+      E(570, 630, "Skógafoss", "act", "A powerful 60-meter waterfall pouring into the Skógá River. Climb the staircase beside the falls for sweeping coastline views, and look for rainbows in the spray. Short drive from the hotel.", { sub: "Stop 1", tent: true }),
+      E(750, 930, "Glacier hike on Falljökull", "act", "Meet your certified glacier guide, gear up with helmet, crampons and ice axe, and walk across blue ice, deep crevasses and frozen sculptures. If weather or safety rules out this glacier, the tour may use another suitable one. Wear thermal layers under your shell and bring snacks. Activities may also move between days.", { sub: "Stop 2", tent: true }),
+      E(1020, 1140, "Hotel and dinner", "food", "Hrífunes Hotel by Troll.is, or similar, a quiet countryside inn between the South Coast waterfalls and Vatnajökull National Park. Breakfast is included. The drive east continues tomorrow morning.", { sub: "Hrífunes Hotel or similar", tent: true }),
+      E(1260, 1380, "Northern Lights sightseeing", "act", "On arrival your guide shares tonight's chances. Take a walk in the dark if the sky is clear and the forecast is good. Never guaranteed.", { sub: "If the sky is clear", tent: true })];
+    if (num === 16) return [
+      E(450, 510, "Breakfast", "food", "Included at the tour hotel."),
+      E(570, 630, "Jökulsárlón Glacier Lagoon", "act", "A glacial lake about 200 m deep, filled with icebergs that calve from the Breiðamerkurjökull glacier. Seals often rest on the ice. Activities may move between days.", { sub: "Stop 1", tent: true }),
+      E(630, 675, "Diamond Beach", "act", "Just across the road, where icebergs wash up as glittering ice chunks on black sand.", { sub: "Stop 2", tent: true }),
+      E(690, 870, "Natural ice cave", "act", "Join an ice cave tour from Jökulsárlón: a Super-Jeep ride to the glacier, a short hike, then you walk into the cave. Winter only, depends on weather and the glacier.", { sub: "Stop 3", tent: true }),
+      E(1000, 1060, "Reynisfjara Black Sand Beach", "act", "On the way back: basalt columns, powerful waves (stay well back from the water) and the Dyrhólaey cliffs in the distance.", { sub: "Stop 4", tent: true }),
+      E(1060, 1200, "Return to Reykjavík", "move", "Estimated arrival around 8:00 PM, varying with weather and road conditions. The tour hotels cover only 2 nights, so your own hotel starts tonight.", { sub: "Back about 8 PM", tent: true }),
+      E(1230, 1290, "Late dinner", "food", "Something simple near your hotel after a long day.", { tent: true })];
+    if (num === 17) return [
+      E(570, 630, "Breakfast", "food", "Slow start after three early mornings."),
+      E(630, 720, "Harpa and Sun Voyager", "act", "A flat waterfront walk from the concert hall to the steel ship sculpture, with mountains across the bay.", { sub: "Waterfront walk" }),
+      E(720, 780, "Lunch", "food", "Fish soup or the fish of the day at the old harbour.", { sub: "Old harbour" }),
+      E(780, 900, "Perlan", "act", "Glacier and ice cave exhibit, an aurora show in the planetarium and views from the top. Take a city bus or taxi from downtown.", { sub: "Glacier exhibit, aurora show" }),
+      E(900, 930, "Taxi to Sky Lagoon", "move", "A short ride across town to Kópavogur by taxi or city bus.", { tent: true }),
+      E(930, 1050, "Sky Lagoon", "lagoon", "In Kópavogur. Book this slot ahead. Soak around sunset (about 17:30) and allow time for the shower rules.", { sub: "Soak at sunset" }),
+      E(1140, 1230, "Dinner", "food", "Your last full night."),
+      E(1260, 1440, "Northern Lights tour", "act", "Skip it if you saw the aurora on the tour or the sky is cloudy. Many operators let you rebook if it is cancelled.", { sub: "Optional", tent: true })];
+    return thursday();
+  }
+  function ensureSched() {
+    if (!state.sched) { state.sched = {}; DAYS.forEach(function (d) { state.sched[d.num] = DEF(d.num); }); save(); }
+  }
+  function syncFlights() {
+    var o = outEvents(), t = thursday().filter(function (x) { return x.fl; }), map = {};
+    Object.keys(o).forEach(function (k) { map[k] = o[k]; });
+    t.forEach(function (x) { map[x.fl] = x; });
+    Object.keys(state.sched).forEach(function (n) {
+      state.sched[n].forEach(function (ev) {
+        var m = ev.fl && map[ev.fl];
+        if (m) { ev.s = m.s; ev.e = m.e; ev.title = m.title; ev.sub = m.sub; ev.note = m.note; }
+      });
+    });
+    save();
+  }
+  function evList(num) { return (state.sched[num] || []).slice().sort(function (a, b) { return a.s - b.s || a.e - b.e; }); }
+  function findEv(id) {
+    for (var n in state.sched) { var l = state.sched[n]; for (var i = 0; i < l.length; i++) if (l[i].id === id) return { day: +n, ev: l[i], idx: i }; }
+    return null;
+  }
+
+  /* ---------- tabs ---------- */
+  var calScrolled = false;
+  function setTab(t) {
+    state.tab = t; save();
+    ["cal", "it", "hot", "bud"].forEach(function (k) {
+      var sel = k === t;
+      $("tab-" + k).setAttribute("aria-selected", sel ? "true" : "false");
+      $("p-" + k).hidden = !sel;
+    });
+    if (t === "cal" && !calScrolled) { $("calbox").scrollTop = 6.5 * PH; calScrolled = true; }
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".tab"), function (b) {
+    b.addEventListener("click", function () { setTab(b.getAttribute("data-tab")); });
+  });
+  (function () {
+    var now = new Date(), t = new Date(2027, 1, 12), n0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var diff = Math.round((t - n0) / 86400000);
+    if (diff > 0) { $("count").textContent = diff; $("countLabel").textContent = diff === 1 ? "day to departure" : "days to departure"; }
+    else if (diff > -7) { $("count").textContent = "Go"; $("countLabel").textContent = "you are on your trip"; }
+    else { $("count").textContent = "Done"; $("countLabel").textContent = "trip complete"; }
+  })();
+  function goDay(num) { setTab("it"); var t = $("day-" + num); if (t && t.scrollIntoView) t.scrollIntoView({ behavior: "smooth", block: "start" }); }
+
+  /* ---------- editor ---------- */
+  var editing = null, lastFocus = null;
+  (function () {
+    var s = $("eDay");
+    DAYS.forEach(function (d) { var o = document.createElement("option"); o.value = d.num; o.textContent = d.dow + " Feb " + d.num; s.appendChild(o); });
+  })();
+  function openEditor(dayNum, id) {
+    lastFocus = document.activeElement;
+    var f = id ? findEv(id) : null;
+    editing = f ? f.ev.id : null;
+    var ev = f ? f.ev : { title: "", sub: "", s: 600, e: 660, cat: "act", tent: false, note: "" };
+    $("mTitle").textContent = f ? "Edit event" : "Add event";
+    $("eTitle").value = ev.title; $("eSub").value = ev.sub || ""; $("eDay").value = f ? f.day : dayNum;
+    $("eStart").value = hmx(ev.s); $("eEnd").value = ev.e >= 1440 ? "00:00" : hmx(ev.e);
+    $("eCat").value = ev.cat; $("eTent").checked = !!ev.tent; $("eNote").value = ev.note || "";
+    $("eDel").hidden = !f;
+    $("modal").hidden = false; $("eTitle").focus();
+  }
+  function closeEditor() { $("modal").hidden = true; editing = null; if (lastFocus && lastFocus.focus) { try { lastFocus.focus(); } catch (e) {} } }
+  $("eCancel").addEventListener("click", closeEditor);
+  $("modal").addEventListener("mousedown", function (e) { if (e.target === $("modal")) closeEditor(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !$("modal").hidden) closeEditor(); });
+  twoStep($("eDel"), "Click again to delete", function () {
+    if (!editing) return;
+    var f = findEv(editing); if (f) { state.sched[f.day].splice(f.idx, 1); save(); }
+    closeEditor(); selEv = null; renderAll();
+  });
+  $("mform").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var title = $("eTitle").value.trim(); if (!title || !$("eStart").value || !$("eEnd").value) return;
+    var s = tmin($("eStart").value), en = tmin($("eEnd").value); if (en <= s) en = 1440;
+    var day = +$("eDay").value;
+    var data = { title: title, sub: $("eSub").value.trim(), s: s, e: en, cat: $("eCat").value, tent: $("eTent").checked, note: $("eNote").value.trim() };
+    if (editing) {
+      var f = findEv(editing);
+      if (f) {
+        for (var k in data) f.ev[k] = data[k];
+        if (f.day !== day) { state.sched[f.day].splice(f.idx, 1); state.sched[day].push(f.ev); }
+        selEv = f.ev.id;
+      }
+    } else {
+      var ne = { id: uid(), fl: "", done: false }; for (var k2 in data) ne[k2] = data[k2];
+      state.sched[day].push(ne); selEv = ne.id;
+    }
+    save(); closeEditor(); renderAll();
+  });
+  $("addCal").addEventListener("click", function () { openEditor(13, null); });
+
+  /* ---------- calendar ---------- */
+  var selEv = null;
+  function showDetail() {
+    var d = $("detail"); d.textContent = "";
+    var f = selEv ? findEv(selEv) : null;
+    if (!f) { d.appendChild(el("span", "dm", "Select an event to see its details.")); return; }
+    var day = dayBy(f.day), ev = f.ev;
+    var left = el("div");
+    left.appendChild(el("div", "dt", ev.title + (ev.sub ? " · " + ev.sub : "")));
+    left.appendChild(el("div", "dm", day.dow + " Feb " + day.num + " · " + hmx(ev.s) + " to " + (ev.e >= 1440 ? "midnight" : hmx(ev.e)) + (ev.note ? " · " + ev.note : "")));
+    d.appendChild(left);
+    var acts = el("div", "acts");
+    var b1 = el("button", "btn primary", "Edit"); b1.type = "button"; b1.addEventListener("click", function () { openEditor(day.num, ev.id); });
+    var b2 = el("button", "btn keep", "Open day in itinerary"); b2.type = "button"; b2.addEventListener("click", function () { goDay(day.num); });
+    acts.appendChild(b1); acts.appendChild(b2); d.appendChild(acts);
+  }
+  function layout(list) {
+    // place overlapping events side by side
+    var items = list.map(function (ev) { return { ev: ev, s: Math.max(0, ev.s), e: Math.min(1440, Math.max(ev.e, ev.s + 20)) }; });
+    items.sort(function (a, b) { return a.s - b.s || b.e - a.e; });
+    var cluster = [], clusterEnd = -1, out = [];
+    function flush() {
+      var cols = [];
+      cluster.forEach(function (it) {
+        var c = 0; while (cols[c] != null && cols[c] > it.s) c++;
+        cols[c] = it.e; it.col = c;
+      });
+      var n = cols.length; cluster.forEach(function (it) { it.n = n; out.push(it); });
+      cluster = []; clusterEnd = -1;
+    }
+    items.forEach(function (it) {
+      if (cluster.length && it.s >= clusterEnd) flush();
+      cluster.push(it); clusterEnd = Math.max(clusterEnd, it.e);
+    });
+    if (cluster.length) flush();
+    return out;
+  }
+  function renderCal() {
+    var keep = $("calbox").scrollTop;
+    var tg = $("tg"); tg.textContent = "";
+    tg.appendChild(el("div", "th corner"));
+    DAYS.forEach(function (day) {
+      var h = el("button", "th"); h.type = "button"; h.setAttribute("aria-label", day.dow + " Feb " + day.num + ": open itinerary");
+      h.appendChild(el("span", "dw", day.dow)); h.appendChild(el("span", "dn", "2/" + day.num));
+      if (day.num >= 14 && day.num <= 16) { h.className += " tour"; h.appendChild(el("span", "tt", "Tour day " + (day.num - 13) + " of 3")); }
+      h.addEventListener("click", function () { goDay(day.num); });
+      tg.appendChild(h);
+    });
+    var tc = el("div", "tcol"); tc.style.height = (24 * PH) + "px";
+    for (var h2 = 1; h2 < 24; h2++) { var l = el("div", "hl", pad(h2) + ":00"); l.style.top = (h2 * PH) + "px"; tc.appendChild(l); }
+    tg.appendChild(tc);
+    DAYS.forEach(function (day) {
+      var col = el("div", "dcol"); col.style.height = (24 * PH) + "px";
+      var n = day.num - 1, rise = 607 - 77 * n / 27, set = 1020 + 95 * n / 27;
+      var rp = (rise / 1440 * 100).toFixed(2) + "%", sp = (set / 1440 * 100).toFixed(2) + "%";
+      var nc = "color-mix(in srgb, var(--night) 70%, transparent)";
+      col.style.backgroundImage = "repeating-linear-gradient(to bottom, transparent 0, transparent " + (PH - 1) + "px, var(--line) " + (PH - 1) + "px, var(--line) " + PH + "px), linear-gradient(to bottom, " + nc + " 0, " + nc + " " + rp + ", transparent " + rp + ", transparent " + sp + ", " + nc + " " + sp + ", " + nc + " 100%)";
+      layout(state.sched[day.num] || []).forEach(function (it) {
+        var ev = it.ev, hgt = Math.max(22, (it.e - it.s) / 60 * PH - 2);
+        var b = el("button", "evb c-" + ev.cat); b.type = "button";
+        b.style.top = (it.s / 60 * PH + 1) + "px"; b.style.height = hgt + "px";
+        b.style.left = "calc(" + (it.col / it.n * 100) + "% + 3px)"; b.style.width = "calc(" + (100 / it.n) + "% - 6px)";
+        b.setAttribute("aria-pressed", ev.id === selEv ? "true" : "false");
+        b.appendChild(el("span", "et", ev.title));
+        if (hgt >= 40) b.appendChild(el("span", "em", hmc(ev.s, ev.e)));
+        if (ev.sub && hgt >= 62) b.appendChild(el("span", "es", ev.sub));
+        b.addEventListener("click", function () {
+          selEv = ev.id;
+          Array.prototype.forEach.call(document.querySelectorAll(".evb"), function (x) { x.setAttribute("aria-pressed", "false"); });
+          b.setAttribute("aria-pressed", "true"); showDetail();
+        });
+        col.appendChild(b);
+      });
+      tg.appendChild(col);
+    });
+    var bc = el("div", "bt corner"); bc.appendChild(el("span", "sk", "Sleep")); tg.appendChild(bc);
+    DAYS.forEach(function (day) {
+      var sl = calSleep(day), c = el("button", "bt " + sl.kind); c.type = "button";
+      c.setAttribute("aria-label", "Sleep on " + day.dow + " Feb " + day.num + ": " + sl.l1 + (sl.l2 ? ", " + sl.l2 : "") + ". Open hotels.");
+      c.appendChild(el("span", "sn", sl.l1));
+      if (sl.l2) c.appendChild(el("span", "sp", sl.l2));
+      c.addEventListener("click", function () { setTab("hot"); });
+      tg.appendChild(c);
+    });
+    $("calbox").scrollTop = keep;
+    var note = $("calNotice");
+    if (!allSet()) { note.hidden = false; note.textContent = "Flight times are assumed from Icelandair's published pattern and are not confirmed for February 2027. Enter your ticket details under Flights in the Itinerary tab and the flight blocks update."; }
+    else { note.hidden = true; }
+    showDetail();
+  }
+
+  /* ---------- itinerary ---------- */
+  function renderJump() {
+    var j = $("jump"); j.textContent = "";
+    DAYS.forEach(function (d) {
+      var a = el("a", null, d.dow + " " + d.num + " · " + d.what); a.href = "#day-" + d.num; a.style.setProperty("--c", TYPE[d.type]);
+      a.addEventListener("click", function (e) { e.preventDefault(); var t = $("day-" + d.num); if (t && t.scrollIntoView) t.scrollIntoView({ behavior: "smooth", block: "start" }); });
+      j.appendChild(a);
+    });
+  }
+  function renderDays() {
+    var host = $("days"); host.textContent = "";
+    DAYS.forEach(function (d, di) {
+      var p = el("section", "panel"); p.id = "day-" + d.num;
+      var head = el("div", "panel-head");
+      var left = el("div");
+      left.appendChild(el("div", "dayno", "DAY " + (di + 1) + " · " + d.dow.toUpperCase() + " FEB " + d.num));
+      left.appendChild(el("h2", null, d.title));
+      head.appendChild(left); head.appendChild(el("span", "chip " + d.chip[0], d.chip[1])); p.appendChild(head);
+
+      var n = d.num - 1, rise = 607 - 77 * n / 27, set = 1020 + 95 * n / 27;
+      var light = el("div", "light"), track = el("div", "track"), sun = el("div", "sun");
+      sun.style.left = (rise / 1440 * 100) + "%"; sun.style.width = ((set - rise) / 1440 * 100) + "%";
+      track.appendChild(sun); light.appendChild(track);
+      var ticks = el("div", "ticks"); ["00", "06", "12", "18", "24"].forEach(function (t) { ticks.appendChild(el("span", null, t)); });
+      light.appendChild(ticks);
+      var note = el("div", "light-note");
+      note.innerHTML = "Daylight about <b>" + hm(rise) + "</b> to <b>" + hm(set) + "</b> (" + Math.floor((set - rise) / 60) + " h " + Math.round((set - rise) % 60) + " min), approximate.";
+      light.appendChild(note); p.appendChild(light);
+
+      var list = evList(d.num), tl = el("ul", "tl");
+      if (!list.length) tl.appendChild(el("li", null, "")), tl.lastChild.appendChild(el("div", "t", "")), tl.lastChild.appendChild(el("div", "why", "Nothing planned. Use Add event."));
+      list.forEach(function (ev) {
+        var li = el("li", ev.done ? "done" : "");
+        li.appendChild(el("div", "t", RO ? hmc(ev.s, ev.e) : hmx(ev.s) + "–" + (ev.e >= 1440 ? "24:00" : hmx(ev.e))));
+        var lb = el("label"), cb = document.createElement("input");
+        cb.type = "checkbox"; cb.checked = !!ev.done; cb.setAttribute("aria-label", "Mark done: " + ev.title);
+        cb.addEventListener("change", function () { ev.done = cb.checked; save(); li.className = cb.checked ? "done" : ""; });
+        var body = el("div", "body"); body.appendChild(el("div", "what", ev.title + (ev.sub ? " · " + ev.sub : "") + (ev.tent ? " (timing to confirm)" : "")));
+        if (ev.note) body.appendChild(el("div", "why", ev.note));
+        lb.appendChild(cb); lb.appendChild(body); li.appendChild(lb);
+        var eb = el("button", "btn sm", "Edit"); eb.type = "button"; eb.setAttribute("aria-label", "Edit " + ev.title); eb.addEventListener("click", function () { openEditor(d.num, ev.id); });
+        li.appendChild(eb); tl.appendChild(li);
+      });
+      p.appendChild(tl);
+
+      var acts = el("div", "dayacts");
+      var add = el("button", "btn primary sm", "Add event"); add.type = "button"; add.addEventListener("click", function () { openEditor(d.num, null); });
+      var rb = el("button", "btn danger sm", "Rebuild day"); rb.type = "button";
+      twoStep(rb, "Click again to replace this day", function () { state.sched[d.num] = DEF(d.num); save(); renderAll(); });
+      acts.appendChild(add); acts.appendChild(rb); p.appendChild(acts);
+
+      var sl = el("div", "light-note"); sl.appendChild(document.createTextNode("Sleep: "));
+      var sv = sleepFor(d), sb = el("b", null, sv.text); if (sv.gap) sb.style.color = "var(--lava)"; sl.appendChild(sb); p.appendChild(sl);
+      var lab = el("label", "label", "Notes for this day"); lab.setAttribute("for", "notes-" + d.num); p.appendChild(lab);
+      var ta = document.createElement("textarea"); ta.id = "notes-" + d.num; ta.placeholder = "Confirmation numbers, meeting points, restaurant names";
+      ta.value = state.notes[d.d] || "";
+      ta.addEventListener("input", function () { state.notes[d.d] = ta.value; save(); });
+      p.appendChild(ta);
+      host.appendChild(p);
+    });
+  }
+  twoStep($("resetSched"), "Click again to reset every day", function () { state.sched = null; ensureSched(); selEv = null; renderAll(); });
+
+  function renderVerdict() {
+    var v = $("verdict"), dep = flights().ret.dep, leave = dep - 240;
+    if (leave < 0) { v.textContent = "That departure is very early, so book an early transfer to the airport."; return; }
+    v.innerHTML = "Leave your Reykjavík hotel by <b>" + hm(leave) + "</b> for Keflavík. That allows about 50 minutes by Flybus or taxi and 3 hours at the airport.";
+  }
+  function renderFlightNotice() {
+    var n = $("flightNotice");
+    if (allSet()) { n.textContent = "Flight details are the ones you entered."; }
+    else { n.textContent = "Prefilled with Icelandair's published pattern (FI 644 from Dulles in the evening, FI 645 from Keflavík on Thursday afternoon), taken from Oct 2026 and Sept 2025 schedules. February 2027 times were not published anywhere I could read. Replace any field with your ticket details."; }
+  }
+  function bindFields() {
+    Object.keys(FDEF).forEach(function (id) {
+      var i = $(id); i.value = fv(id);
+      i.addEventListener("input", function () {
+        state.fields[id] = i.value; save();
+        if (/^\d\d:\d\d$/.test(fv("outDep")) && /^\d\d:\d\d$/.test(fv("outArr")) && /^\d\d:\d\d$/.test(fv("retDep")) && /^\d\d:\d\d$/.test(fv("retArr"))) { syncFlights(); renderCal(); renderDays(); }
+        renderVerdict(); renderFlightNotice();
+      });
+    });
+    renderVerdict(); renderFlightNotice();
+  }
+
+  var CHECKS = [
+    { g: "Bookings", id: "bl", t: "Book Blue Lagoon, 10:00 slot on Sat Feb 13" },
+    { g: "Bookings", id: "h13", t: "Reykjavík hotel for the night of Feb 13" },
+    { g: "Bookings", id: "tourpick", t: "Choose Troll.is pickup point (8:00–8:45 AM Feb 14)" },
+    { g: "Bookings", id: "tourend", t: "Confirm with Troll.is where in Reykjavík the tour drops off on Feb 16 (back about 8 PM)" },
+    { g: "Bookings", id: "h16", t: "Reykjavík hotel for the nights of Feb 16 and Feb 17" },
+    { g: "Bookings", id: "perlan", t: "Perlan tickets for Feb 17" },
+    { g: "Bookings", id: "aur", t: "Optional: Northern Lights tour for Feb 17" },
+    { g: "Bookings", id: "sky", t: "Book Sky Lagoon on Wed Feb 17 (about 15:30)" },
+    { g: "Bookings", id: "bltr", t: "Book Blue Lagoon bus transfers from the airport and on to Reykjavík" },
+    { g: "Bookings", id: "kefbus", t: "Book a Flybus or taxi to Keflavík for Feb 18" },
+    { g: "Before you go", id: "pass", t: "Passport valid and in your bag" },
+    { g: "Before you go", id: "ins", t: "Travel insurance sorted" },
+    { g: "Before you go", id: "app", t: "Install an aurora forecast app" },
+    { g: "Pack", id: "layers", t: "Thermal base layers and a waterproof shell" },
+    { g: "Pack", id: "hands", t: "Warm hat, gloves and neck warmer" },
+    { g: "Pack", id: "boots", t: "Waterproof boots with good grip" },
+    { g: "Pack", id: "swim", t: "Swimsuit and quick-dry towel" },
+    { g: "Pack", id: "plug", t: "European plug adapter" }
+  ];
+  function renderChecks() {
+    var ul = $("checks"); ul.textContent = ""; var group = "", done = 0;
+    CHECKS.forEach(function (c) {
+      if (c.g !== group) { group = c.g; ul.appendChild(el("li", "label group-h", c.g)); }
+      var li = el("li"), lb = el("label"), cb = document.createElement("input");
+      cb.type = "checkbox"; cb.id = "chk-" + c.id; cb.checked = !!state.checks[c.id]; if (cb.checked) done++;
+      cb.addEventListener("change", function () { state.checks[c.id] = cb.checked; save(); renderChecks(); });
+      lb.appendChild(cb); lb.appendChild(el("span", null, c.t)); li.appendChild(lb); ul.appendChild(li);
+    });
+    $("progress").style.width = (done / CHECKS.length * 100) + "%";
+    $("progressText").textContent = done + " of " + CHECKS.length;
+  }
+
+  /* ---------- budget ---------- */
+  var CATS = ["Transport", "Tour", "Lagoons", "Stay", "Food", "Extras", "Other"];
+  var SRC = { list: "From listing", est: "Estimate", enter: "Enter yours", mine: "Your figure" };
+  var BDEF = [
+    { id: "fl", cat: "Transport", name: "Round-trip flights, Dulles to Keflavík", when: "Feb 12 and Feb 18", unit: 0, cur: "USD", per: 1, mult: 1, src: "enter" },
+    { id: "tr", cat: "Transport", name: "Airport, lagoon and Sky Lagoon transfers", when: "Feb 13, 17 and 18 · no rental car", unit: 110, cur: "USD", per: 1, mult: 1, src: "est" },
+    { id: "tour", cat: "Tour", name: "Troll.is 3-day South Coast, Golden Circle and Northern Lights tour", when: "Feb 14–16 · from price, private double room", unit: 1017, cur: "USD", per: 1, mult: 1, src: "list" },
+    { id: "bl", cat: "Lagoons", name: "Blue Lagoon, Comfort", when: "Feb 13 · from price", unit: 11990, cur: "ISK", per: 1, mult: 1, src: "list" },
+    { id: "sky", cat: "Lagoons", name: "Sky Lagoon, Saman", when: "Feb 17 · from price", unit: 13990, cur: "ISK", per: 1, mult: 1, src: "list" },
+    { id: "htl", cat: "Stay", name: "Reykjavík hotel, one room per night", when: "Nights of Feb 13, 16 and 17", unit: 160, cur: "USD", per: 0, mult: 3, src: "est" },
+    { id: "meals", cat: "Food", name: "Meals the tour does not cover", when: "About 6 days, per person per day", unit: 70, cur: "USD", per: 1, mult: 6, src: "est" },
+    { id: "perlan", cat: "Extras", name: "Perlan museum", when: "Feb 17", unit: 40, cur: "USD", per: 1, mult: 1, src: "est" },
+    { id: "aur", cat: "Extras", name: "Northern Lights tour (optional)", when: "Feb 17", unit: 100, cur: "USD", per: 1, mult: 1, src: "est" },
+    { id: "ins", cat: "Extras", name: "Travel insurance", when: "Before departure", unit: 0, cur: "USD", per: 1, mult: 1, src: "enter" },
+    { id: "misc", cat: "Extras", name: "Souvenirs and spending money", when: "Whole trip", unit: 100, cur: "USD", per: 1, mult: 1, src: "est" }
+  ];
+  function ensureBud() {
+    if (state.bud) return;
+    state.bud = BDEF.map(function (b) {
+      var o = {}; for (var k in b) o[k] = b[k];
+      var old = state.budget && state.budget[b.id];
+      if (old) {
+        if (old.unit != null && +old.unit !== b.unit) { o.unit = +old.unit; o.src = "mine"; }
+        if (old.mult != null) o.mult = +old.mult;
+        if (old.inc != null) o.inc = old.inc;
+        if (old.paid) o.paid = true;
+      }
+      return o;
+    });
+    save();
+  }
+  function line(it) {
+    var unit = +it.unit, mult = +it.mult;
+    var usdUnit = it.cur === "ISK" ? unit / (+state.rate || 130) : unit;
+    var total = usdUnit * (isNaN(mult) ? 0 : mult) * (it.per ? (+state.trav || 1) : 1);
+    return isNaN(total) ? 0 : total;
+  }
+  var rows = {};
+  var catCells = {};
+  function recompute() {
+    var total = 0, cats = {};
+    CATS.forEach(function (c) { cats[c] = 0; });
+    state.bud.forEach(function (it) {
+      var t = line(it), r = rows[it.id], inc = it.inc !== false;
+      if (r) { r.cell.textContent = usd(t); r.tr.className = inc ? "" : "off"; }
+      if (inc) { total += t; cats[CATS.indexOf(it.cat) >= 0 ? it.cat : "Other"] += t; }
+    });
+    CATS.forEach(function (c) { if (catCells[c]) catCells[c].textContent = usd(cats[c]); });
+    $("sTotal").textContent = usd(total);
+    var max = Math.max.apply(null, CATS.map(function (c) { return cats[c]; })) || 1;
+    var host = $("cats"); host.textContent = "";
+    CATS.forEach(function (c) {
+      var r = el("div", "catrow"); r.appendChild(el("span", null, c));
+      var bar = el("div", "catbar"), f = document.createElement("div"); f.style.width = (cats[c] / max * 100) + "%"; bar.appendChild(f); r.appendChild(bar);
+      r.appendChild(el("span", "v mono", usd(cats[c]))); host.appendChild(r);
+    });
+  }
+  function renderBudget() {
+    var tb = $("bbody"); tb.textContent = ""; rows = {}; catCells = {};
+    CATS.forEach(function (catName) {
+    var group = state.bud.filter(function (it) { return (CATS.indexOf(it.cat) >= 0 ? it.cat : "Other") === catName; });
+    if (!group.length) return;
+    group.forEach(function (it) {
+      var tr = document.createElement("tr");
+      var td0 = el("td"), inc = document.createElement("input"); inc.type = "checkbox"; inc.checked = it.inc !== false; inc.setAttribute("aria-label", "Include " + it.name);
+      inc.addEventListener("change", function () { it.inc = inc.checked; save(); recompute(); }); td0.appendChild(inc); tr.appendChild(td0);
+
+      var td1 = el("td", "nm");
+      var ni = document.createElement("input"); ni.type = "text"; ni.value = it.name; ni.setAttribute("aria-label", "Item name");
+      ni.addEventListener("input", function () { it.name = ni.value; save(); });
+      var wi = document.createElement("input"); wi.type = "text"; wi.className = "wh"; wi.value = it.when || ""; wi.placeholder = "Dates or notes"; wi.setAttribute("aria-label", "Dates or notes for " + it.name);
+      wi.addEventListener("input", function () { it.when = wi.value; save(); });
+      var chip = el("span", "src " + it.src, SRC[it.src] || "Your figure");
+      td1.appendChild(ni); td1.appendChild(wi); td1.appendChild(chip); tr.appendChild(td1);
+
+      var td2 = el("td", "ct"), cs = document.createElement("select"); cs.setAttribute("aria-label", "Category for " + it.name);
+      CATS.forEach(function (c) { var o = document.createElement("option"); o.value = c; o.textContent = c; cs.appendChild(o); });
+      cs.value = CATS.indexOf(it.cat) >= 0 ? it.cat : "Other";
+      cs.addEventListener("change", function () { it.cat = cs.value; save(); renderBudget(); }); td2.appendChild(cs); tr.appendChild(td2);
+
+      var td3 = el("td", "in"), pr = el("div", "pr");
+      var pi = document.createElement("input"); pi.type = "number"; pi.min = "0"; pi.step = "any"; pi.value = it.unit; pi.setAttribute("aria-label", "Price for " + it.name);
+      var cu = document.createElement("select"); cu.setAttribute("aria-label", "Currency for " + it.name);
+      ["USD", "ISK"].forEach(function (c) { var o = document.createElement("option"); o.value = c; o.textContent = c; cu.appendChild(o); }); cu.value = it.cur;
+      function mark() { if (it.src !== "mine") { it.src = "mine"; chip.className = "src mine"; chip.textContent = SRC.mine; } }
+      pi.addEventListener("input", function () { it.unit = pi.value; mark(); save(); recompute(); });
+      cu.addEventListener("change", function () { it.cur = cu.value; mark(); save(); recompute(); });
+      pr.appendChild(pi); pr.appendChild(cu); td3.appendChild(pr); tr.appendChild(td3);
+
+      var td4 = el("td", "q"), qi = document.createElement("input"); qi.type = "number"; qi.min = "0"; qi.step = "1"; qi.value = it.mult; qi.setAttribute("aria-label", "Quantity for " + it.name);
+      qi.addEventListener("input", function () { it.mult = qi.value; save(); recompute(); }); td4.appendChild(qi); tr.appendChild(td4);
+
+      var td5 = el("td"), pp = document.createElement("input"); pp.type = "checkbox"; pp.checked = !!it.per; pp.setAttribute("aria-label", "Multiply by travelers: " + it.name);
+      pp.addEventListener("change", function () { it.per = pp.checked ? 1 : 0; save(); recompute(); }); td5.appendChild(pp); tr.appendChild(td5);
+
+      var td6 = el("td", "num mono"); tr.appendChild(td6);
+
+      var td8 = el("td"), del = el("button", "btn sm danger", "Delete"); del.type = "button"; del.setAttribute("aria-label", "Delete " + it.name);
+      twoStep(del, "Sure?", function () { state.bud = state.bud.filter(function (x) { return x !== it; }); save(); renderBudget(); });
+      td8.appendChild(del); tr.appendChild(td8);
+
+      rows[it.id] = { tr: tr, cell: td6 }; tb.appendChild(tr);
+    });
+    });
+    recompute();
+  }
+  $("addLine").addEventListener("click", function () {
+    var nid = "b" + uid();
+    state.bud.push({ id: nid, cat: $("newCat").value, name: "New item", when: "", unit: 0, cur: "USD", per: 1, mult: 1, src: "mine" });
+    save(); renderBudget();
+    var r = rows[nid]; if (r) { var i0 = r.tr.querySelector("input[type=text]"); if (i0) { i0.focus(); i0.select(); } }
+  });
+  CATS.forEach(function (c) { var o = document.createElement("option"); o.value = c; o.textContent = c; $("newCat").appendChild(o); });
+  $("newCat").value = "Extras";
+  twoStep($("resetBud"), "Click again to reset the budget", function () { state.bud = null; state.budget = {}; ensureBud(); renderBudget(); });
+  var tv = $("trav"), rt = $("rate"); tv.value = state.trav; rt.value = state.rate;
+  tv.addEventListener("input", function () { state.trav = tv.value; save(); recompute(); });
+  rt.addEventListener("input", function () { state.rate = rt.value; save(); recompute(); });
+
+  /* ---------- hotels ---------- */
+  var STATUS = { book: "To book", booked: "Booked", incl: "Included in tour" };
+  function ensureStays() {
+    if (state.stays) {
+      if (!state.stayTotal) {
+        state.stays.forEach(function (s) { s.price = Math.round((+s.price || 0) * nightsOf(s) * 100) / 100; });
+        state.stayTotal = true; save();
+      }
+      return;
+    }
+    state.stayTotal = true;
+    state.stays = [
+      { id: uid(), name: "Reykjavík hotel", place: "Reykjavík", inDate: "2027-02-13", outDate: "2027-02-14", conf: "", price: 160, cur: "USD", status: "book", note: "Pickup is 8:00 to 8:45 AM on Feb 14, so stay central." },
+      { id: uid(), name: "Drangshlíð Hotel by Troll.is, or similar", place: "South Iceland countryside", inDate: "2027-02-14", outDate: "2027-02-15", conf: "", price: 0, cur: "USD", status: "incl", note: "One night with breakfast is part of the tour." },
+      { id: uid(), name: "Hrífunes Hotel by Troll.is, or similar", place: "South Iceland, near Vatnajökull", inDate: "2027-02-15", outDate: "2027-02-16", conf: "", price: 0, cur: "USD", status: "incl", note: "Quiet countryside inn with wide-open skies for Northern Lights. Breakfast is included." },
+      { id: uid(), name: "Reykjavík hotel", place: "Reykjavík", inDate: "2027-02-16", outDate: "2027-02-18", conf: "", price: 320, cur: "USD", status: "book", note: "The tour hotels cover only two nights. Check in after the tour returns." }
+    ];
+    save();
+  }
+  function dstr(num) { return "2027-02-" + pad(num); }
+  function stayFor(num) {
+    var ds = dstr(num), list = state.stays || [];
+    for (var i = 0; i < list.length; i++) { var s = list[i]; if (s.inDate && s.outDate && ds >= s.inDate && ds < s.outDate) return s; }
+    return null;
+  }
+  function sleepFor(d) {
+    var s = stayFor(d.num);
+    if (s) return { text: (s.name || "Hotel"), gap: false };
+    if (d.num === 12) return { text: "On the plane", gap: false, plane: true };
+    if (d.num === 18) return { text: "Home", gap: false, plane: true };
+    return { text: "No hotel set", gap: true };
+  }
+  function calSleep(d) {
+    var s = stayFor(d.num);
+    if (s) {
+      if (s.status === "incl") return { l1: "Tour hotel", l2: "", kind: "tour" };
+      return { l1: s.name || "Hotel", l2: s.place || "", kind: "city" };
+    }
+    if (d.num === 12) return { l1: "On the plane", l2: "", kind: "plane" };
+    if (d.num === 18) return { l1: "Home", l2: "", kind: "plane" };
+    return { l1: "No hotel set", l2: "", kind: "gap" };
+  }
+  function nightsOf(s) {
+    var a = Date.parse(s.inDate), b = Date.parse(s.outDate);
+    if (isNaN(a) || isNaN(b)) return 0;
+    return Math.max(0, Math.round((b - a) / 86400000));
+  }
+  function stayUsd(s) {
+    var p = +s.price || 0, u = s.cur === "ISK" ? p / (+state.rate || 130) : p;
+    return u;
+  }
+  function refreshCover() {
+    var host = $("cover"); host.textContent = "";
+    [12, 13, 14, 15, 16, 17].forEach(function (n) {
+      var d = dayBy(n), sv = sleepFor(d);
+      var c = el("div", "nt" + (sv.gap ? " gap" : sv.plane ? " plane" : ""));
+      c.appendChild(el("b", null, "Night of " + d.dow + " Feb " + n));
+      c.appendChild(document.createTextNode(sv.text));
+      host.appendChild(c);
+    });
+  }
+  function refreshStayTotal() {
+    var tot = 0, nights = 0;
+    (state.stays || []).forEach(function (s) { tot += stayUsd(s); nights += nightsOf(s); });
+    $("stayTotal").textContent = "Hotel total: " + usd(tot) + " for " + nights + (nights === 1 ? " night" : " nights") + " (rooms included in the tour count at their entered price).";
+  }
+  function afterStayChange() { save(); refreshCover(); refreshStayTotal(); renderCal(); renderDays(); }
+  function stayField(label, node, cls) {
+    var f = el("div", "field" + (cls ? " " + cls : "")); var l = el("label", "label", label); var id = "sf-" + uid(); l.setAttribute("for", id); node.id = id;
+    f.appendChild(l); f.appendChild(node); return f;
+  }
+  function renderStays() {
+    var host = $("stayList"); host.textContent = "";
+    (state.stays || []).forEach(function (s) {
+      var p = el("section", "panel");
+      var head = el("div", "panel-head");
+      var title = el("h3", null, s.name || "Hotel"); head.appendChild(title);
+      p.appendChild(head);
+      var g = el("div", "stgrid");
+      var ni = document.createElement("input"); ni.type = "text"; ni.value = s.name;
+      ni.addEventListener("input", function () { s.name = ni.value; title.textContent = s.name || "Hotel"; afterStayChange(); });
+      g.appendChild(stayField("Hotel name", ni, "full"));
+      var pl = document.createElement("input"); pl.type = "text"; pl.value = s.place || ""; pl.placeholder = "Address or area";
+      pl.addEventListener("input", function () { s.place = pl.value; save(); });
+      g.appendChild(stayField("Address or area", pl, "full"));
+      var ci = document.createElement("input"); ci.type = "date"; ci.value = s.inDate;
+      var co = document.createElement("input"); co.type = "date"; co.value = s.outDate;
+      var nn = el("div", "note");
+      function upN() { var n = nightsOf(s), t = stayUsd(s); nn.textContent = n + (n === 1 ? " night" : " nights") + " · " + usd(t) + " total" + (n && t ? " · about " + usd(t / n) + " per night" : ""); }
+      ci.addEventListener("input", function () { s.inDate = ci.value; upN(); afterStayChange(); });
+      co.addEventListener("input", function () { s.outDate = co.value; upN(); afterStayChange(); });
+      g.appendChild(stayField("Check in", ci)); g.appendChild(stayField("Check out", co));
+      var pr = el("div", "pr");
+      var pi = document.createElement("input"); pi.type = "number"; pi.min = "0"; pi.step = "any"; pi.value = s.price; pi.setAttribute("aria-label", "Total price for the stay");
+      var cu = document.createElement("select"); cu.setAttribute("aria-label", "Currency");
+      ["USD", "ISK"].forEach(function (c) { var o = document.createElement("option"); o.value = c; o.textContent = c; cu.appendChild(o); }); cu.value = s.cur;
+      pi.addEventListener("input", function () { s.price = pi.value; upN(); save(); refreshStayTotal(); });
+      cu.addEventListener("change", function () { s.cur = cu.value; upN(); save(); refreshStayTotal(); });
+      pr.appendChild(pi); pr.appendChild(cu);
+      var pf = el("div", "field"); pf.appendChild(el("span", "label", "Total price for the stay")); pf.appendChild(pr); g.appendChild(pf);
+      var tl = document.createElement("input"); tl.type = "checkbox"; tl.checked = s.status === "incl";
+      tl.addEventListener("change", function () { s.status = tl.checked ? "incl" : "book"; afterStayChange(); });
+      var tf = el("label", "chk"); tf.appendChild(tl); tf.appendChild(document.createTextNode(" Part of the tour (shows as Tour hotel)")); g.appendChild(tf);
+      var cf = document.createElement("input"); cf.type = "text"; cf.value = s.conf || ""; cf.placeholder = "Confirmation number";
+      cf.addEventListener("input", function () { s.conf = cf.value; save(); });
+      g.appendChild(stayField("Confirmation number", cf));
+      var nt = document.createElement("textarea"); nt.className = "stnote"; nt.rows = 2; nt.value = s.note || ""; nt.placeholder = "Check-in time, breakfast, parking, contact";
+      nt.addEventListener("input", function () { s.note = nt.value; save(); });
+      g.appendChild(stayField("Notes", nt, "full"));
+      p.appendChild(g);
+      var foot = el("div", "toolbar"); foot.appendChild(nn); upN();
+      var del = el("button", "btn sm danger", "Delete hotel"); del.type = "button";
+      twoStep(del, "Click again to delete", function () { state.stays = state.stays.filter(function (x) { return x !== s; }); afterStayChange(); renderStays(); });
+      foot.appendChild(del); p.appendChild(foot);
+      host.appendChild(p);
+    });
+    refreshCover(); refreshStayTotal();
+  }
+  $("addStay").addEventListener("click", function () {
+    state.stays.push({ id: uid(), name: "New hotel", place: "", inDate: "2027-02-17", outDate: "2027-02-18", conf: "", price: 0, cur: "USD", status: "book", note: "" });
+    afterStayChange(); renderStays();
+    var ins = document.querySelectorAll("#stayList section:last-child input[type=text]"); if (ins[0]) { ins[0].focus(); ins[0].select(); }
+  });
+  $("stayToBud").addEventListener("click", function () {
+    var tot = 0; state.stays.forEach(function (s) { tot += stayUsd(s); });
+    var it = null; state.bud.forEach(function (b) { if (b.id === "htl") it = b; });
+    if (!it) { it = { id: "htl", cat: "Stay", per: 0 }; state.bud.push(it); }
+    it.name = "Hotels (from the Hotels tab)"; it.when = "All nights"; it.unit = Math.round(tot * 100) / 100; it.cur = "USD"; it.mult = 1; it.per = 0; it.cat = "Stay"; it.src = "mine";
+    save(); renderBudget();
+    $("stayMsg").textContent = "Budget updated: hotel line is now " + usd(tot) + ".";
+  });
+
+  function migrate() {
+    if (state.ver === 2) return;
+    [13, 17, 18].forEach(function (n) { state.sched[n] = DEF(n); });
+    state.bud.forEach(function (b) {
+      if (b.id === "sky" && /Feb 18/.test(b.when || "")) b.when = "Feb 17 · from price";
+      if (b.id === "tr" && b.src === "est" && +b.unit === 60) { b.unit = 110; b.name = "Airport, lagoon and Sky Lagoon transfers"; b.when = "Feb 13, 17 and 18 · no rental car"; }
+    });
+    state.bud = state.bud.filter(function (b) { return !(b.id === "pool" && b.src === "est" && +b.unit === 12); });
+    state.ver = 2; save();
+  }
+  function renderAll() { renderCal(); renderDays(); }
+
+  function migrate3() {
+    if (state.ver3) return;
+    state.sched[14] = DEF(14); state.ver3 = true; save();
+  }
+  function migrate4() {
+    if (state.ver4) return;
+    state.sched[15] = DEF(15);
+    var out = [];
+    (state.stays || []).forEach(function (s) {
+      if (s.status === "incl" && s.inDate === "2027-02-14" && s.outDate === "2027-02-16" && /Drangsh/.test(s.name)) {
+        s.outDate = "2027-02-15"; s.note = "One night with breakfast is part of the tour."; out.push(s);
+        out.push({ id: uid(), name: "Hrífunes Hotel by Troll.is, or similar", place: "South Iceland, near Vatnajökull", inDate: "2027-02-15", outDate: "2027-02-16", conf: "", price: 0, cur: "USD", status: "incl", note: "Quiet countryside inn with wide-open skies for Northern Lights. Breakfast is included." });
+      } else out.push(s);
+    });
+    state.stays = out; state.ver4 = true; save();
+  }
+  function migrate5() {
+    if (state.ver5) return;
+    state.sched[16] = DEF(16); state.ver5 = true; save();
+  }
+  ensureSched(); ensureBud(); ensureStays(); migrate(); migrate3(); migrate4(); migrate5();
+  renderJump(); renderAll(); bindFields(); renderChecks(); renderBudget(); renderStays();
+  setTab(state.tab === "it" || state.tab === "hot" || state.tab === "bud" ? state.tab : "cal");
+  if (RO) {
+  /* ---------- reader mode ---------- */
+  (function () {
+    document.documentElement.classList.add("ro");
+    var hdr = document.querySelector("header .route"); if (hdr) hdr.textContent = "IAD → KEF · FEB 12–18, 2027 · VIEW ONLY";
+    var hint = document.querySelector("#p-cal .hint");
+    if (hint) hint.textContent = "Tap any block for details. Shaded areas are night. Friday evening is Virginia time; Saturday onward is Iceland time (5 hours ahead).";
+    var ft = document.querySelector("footer"); if (ft) ft.textContent = "Tour details combine the Troll.is page and the TourRadar listing for the same 3-day tour. Exact stops and times change with weather and road conditions. Flight times are scheduled estimates. Daylight hours are approximate for Reykjavík.";
+    var tt = document.querySelector("#p-it .two .panel h3"); if (tt) tt.textContent = "Flights";
+    // flights as plain text
+    var fp = document.querySelector("#p-it .two .panel");
+    function t12(v) { var p = (v || "00:00").split(":"); return hmx(+p[0] * 60 + +p[1]); }
+    function flightBlock(head, noId, depId, arrId, depL, arrL) {
+      var f = flights(), key = head;
+      var wrap = el("div", "rof");
+      [["Flight", $(noId).value || "–"], [depL, t12($(depId).value)], [arrL, t12($(arrId).value)]].forEach(function (x) {
+        var d = document.createElement("div"); d.appendChild(el("span", null, x[0])); d.appendChild(el("b", null, x[1])); wrap.appendChild(d);
+      });
+      return wrap;
+    }
+    var heads = fp.querySelectorAll(".fhead");
+    var v = $("verdict");
+    heads[0].insertAdjacentElement("afterend", flightBlock("o", "outNo", "outDep", "outArr", "Departs IAD", "Arrives KEF (Sat)"));
+    heads[1].insertAdjacentElement("afterend", flightBlock("r", "retNo", "retDep", "retArr", "Departs KEF", "Arrives IAD"));
+    var fn = $("flightNotice"); if (fn) fn.textContent = "Scheduled times are estimates. Check the airline for the final times.";
+    // hotels
+    var hosts = $("stayList"), ro = el("div", "stack"); hosts.insertAdjacentElement("afterend", ro);
+    function dshort(iso) { var d = new Date(iso + "T12:00:00"); return d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" }); }
+    (state.stays || []).forEach(function (s) {
+      var p = el("section", "panel rohotel"), l = el("div"), r = el("div");
+      l.appendChild(el("h3", null, s.name || "Hotel"));
+      var meta = [s.place, dshort(s.inDate) + " → " + dshort(s.outDate) + " · " + nightsOf(s) + (nightsOf(s) === 1 ? " night" : " nights")].filter(Boolean).join(" · ");
+      l.appendChild(el("div", "roview", meta));
+      if (s.note) l.appendChild(el("div", "why muted", s.note));
+      var amt = s.status === "incl" ? "Included" : (stayUsd(s) ? usd(stayUsd(s)) : "–");
+      r.appendChild(el("div", "big", amt));
+      r.style.textAlign = "right";
+      p.appendChild(l); p.appendChild(r); ro.appendChild(p);
+    });
+    // budget
+    var bh = $("bbody").closest(".tablebox"), rb = el("div", "robud"); bh.insertAdjacentElement("beforebegin", rb);
+    var tot = 0, cats = {};
+    CATS.forEach(function (c) { cats[c] = []; });
+    state.bud.forEach(function (it) { cats[CATS.indexOf(it.cat) >= 0 ? it.cat : "Other"].push(it); });
+    var big = el("div", "sum lead"); big.appendChild(el("span", "label", "Trip total")); var bt = el("b", null, ""); big.appendChild(bt);
+    rb.appendChild(big);
+    var card = el("div", "cat");
+    state.bud.forEach(function (it) {
+      var t = line(it), inc = it.inc !== false; if (inc) tot += t;
+      var ln = el("div", "ln" + (inc ? "" : " off"));
+      ln.appendChild(el("div", "nm", it.name)); if (it.when) ln.appendChild(el("div", "wn", it.when));
+      ln.appendChild(el("div", "am", it.unit ? usd(t) : "TBD")); card.appendChild(ln);
+    });
+    var fr = el("div", "ln tot"); fr.appendChild(el("div", "nm", "Trip total")); fr.appendChild(el("div", "am", usd(tot))); card.appendChild(fr);
+    rb.appendChild(card);
+    bt.textContent = usd(tot);
+    var bn = el("div", "note", "Tour and lagoon prices are \"from\" prices published by the sellers and change by date. Estimates are planning figures."); rb.appendChild(bn);
+    // default to the itinerary on phones, where the week grid is cramped
+    if (window.matchMedia && window.matchMedia("(max-width: 700px)").matches) setTab("it"); else setTab("cal");
+    document.querySelectorAll("input, select, textarea").forEach(function (x) { if (!x.closest(".modal")) x.disabled = true; });
+    var m = document.querySelector(".modal"); if (m) m.remove();
+  })();
+  } else { mirrorNow(); }
+})();
+</script>
+
+</body></html>
